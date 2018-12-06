@@ -164,7 +164,7 @@ namespace Plant_Box_Service.Controllers
                     // var callbackUrl = Url.Action("ConfirmEmail", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);
                     // await UserManager.SendEmailAsync(user.Id, "Confirm your account", "Please confirm your account by clicking <a href=\"" + callbackUrl + "\">here</a>");
                     await this.UserManager.AddToRoleAsync(user.Id, db.Roles.Select(r => r.Name).FirstOrDefault());
-                    return RedirectToAction("Index", "Home");
+                    return RedirectToAction("Create", "Preferences");
                 }
                 AddErrors(result);
             }

@@ -13,7 +13,7 @@ namespace Plant_Box_Service.Migrations
         
         string IMigrationMetadata.Id
         {
-            get { return "201812061517560_Initial"; }
+            get { return "201812061742269_Initial"; }
         }
         
         string IMigrationMetadata.Source

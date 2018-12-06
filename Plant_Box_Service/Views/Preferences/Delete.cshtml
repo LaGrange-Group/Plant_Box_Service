@@ -1,0 +1,112 @@
+﻿@model Plant_Box_Service.Models.Preference
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>Preference</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.IsLarge)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.IsLarge)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.OptimalSize)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.OptimalSize)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.FlexibleSize)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.FlexibleSize)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DrapeClimb)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DrapeClimb)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Cacti)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Cacti)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Hanging)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Hanging)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.FoodBearing)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.FoodBearing)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Bonsai)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Bonsai)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Tillandsia)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Tillandsia)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Flowers)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Flowers)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PerishablesOnly)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PerishablesOnly)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
+</div>

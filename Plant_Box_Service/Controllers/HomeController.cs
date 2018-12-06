@@ -10,21 +10,11 @@ namespace Plant_Box_Service.Controllers
     {
         public ActionResult Index()
         {
-            return View();
-        }
-
-        public ActionResult About()
-        {
-            ViewBag.Message = "Your application description page.";
-
-            return View();
-        }
-
-        public ActionResult Contact()
-        {
-            ViewBag.Message = "Your contact page.";
-
-            return View();
+            if (User.IsInRole("Customer"))
+            {
+                return RedirectToAction("Index", "Dashboard");
+            }
+            return RedirectToAction("Login", "Account");
         }
     }
 }

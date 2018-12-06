@@ -1,0 +1,93 @@
+﻿@model IEnumerable<Plant_Box_Service.Models.Preference>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.IsLarge)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.OptimalSize)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.FlexibleSize)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DrapeClimb)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Cacti)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Hanging)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.FoodBearing)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Bonsai)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Tillandsia)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Flowers)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PerishablesOnly)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.IsLarge)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.OptimalSize)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.FlexibleSize)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.DrapeClimb)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Cacti)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Hanging)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.FoodBearing)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Bonsai)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Tillandsia)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Flowers)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PerishablesOnly)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
+            @Html.ActionLink("Details", "Details", new { id=item.Id }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.Id })
+        </td>
+    </tr>
+}
+
+</table>

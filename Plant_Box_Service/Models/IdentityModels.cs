@@ -29,5 +29,11 @@ namespace Plant_Box_Service.Models
         {
             return new ApplicationDbContext();
         }
+
+        public DbSet<Customer> Customers { get; set; }
+        public DbSet<State> States { get; set; }
+        public DbSet<Preference> Preferences { get; set; }
+        public DbSet<Payment> Payments { get; set; }
+        public DbSet<Gift> Gifts { get; set; }
     }
 }
