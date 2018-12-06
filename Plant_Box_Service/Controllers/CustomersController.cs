@@ -6,7 +6,9 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
+using Microsoft.AspNet.Identity;
 using Plant_Box_Service.Models;
+using Trash_Collector.Class;
 
 namespace Plant_Box_Service.Controllers
 {
@@ -37,12 +39,19 @@ namespace Plant_Box_Service.Controllers
         }
 
         // GET: Customers/Create
-        public ActionResult Create()
+        public ActionResult Create(int? preferenceId, bool isValid = true, string firstName = "", string lastName = "")
         {
+            Customer customer = new Customer
+            {
+                FirstName = firstName,
+                LastName = lastName,
+                PreferenceId = preferenceId
+            };
+            ViewBag.isValid = isValid;
             ViewBag.PaymentId = new SelectList(db.Payments, "Id", "Id");
             ViewBag.PreferenceId = new SelectList(db.Preferences, "Id", "OptimalSize");
             ViewBag.StateId = new SelectList(db.States, "Id", "Name");
-            return View();
+            return View(customer);
         }
 
         // POST: Customers/Create
@@ -54,9 +63,19 @@ namespace Plant_Box_Service.Controllers
         {
             if (ModelState.IsValid)
             {
-                db.Customers.Add(customer);
-                db.SaveChanges();
-                return RedirectToAction("Index", "Dashboard");
+                var userId = User.Identity.GetUserId();
+                customer.UserId = userId;
+                customer.MemberSince = DateTime.Now;
+                if (Geocode.CheckValidAddress(customer))
+                {
+                    if (Geocode.isValidLocation)
+                    {
+                        db.Customers.Add(customer);
+                        db.SaveChanges();
+                        return RedirectToAction("Index", "Dashboard");
+                    }
+                }
+                return RedirectToAction("Create", new { customer.PreferenceId, isValid = false, firstName = customer.FirstName, lastName = customer.LastName });
             }
 
             ViewBag.PaymentId = new SelectList(db.Payments, "Id", "Id", customer.PaymentId);

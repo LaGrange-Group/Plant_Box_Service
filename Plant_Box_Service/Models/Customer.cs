@@ -20,13 +20,13 @@ namespace Plant_Box_Service.Models
         public State State { get; set; }
         public int ZipCode { get; set; }
         [ForeignKey("Preference")]
-        public int PreferenceId { get; set; }
+        public int? PreferenceId { get; set; }
         public Preference Preference { get; set; }
         [ForeignKey("Payment")]
-        public int PaymentId { get; set; }
+        public int? PaymentId { get; set; }
         public Payment Payment { get; set; }
-        public bool Gifting { get; set; }
-        public bool Donating { get; set; }
+        public bool? Gifting { get; set; }
+        public bool? Donating { get; set; }
         public bool AccountStatus { get; set; }
         public DateTime MemberSince { get; set; }
         [ForeignKey("ApplicationUser")]

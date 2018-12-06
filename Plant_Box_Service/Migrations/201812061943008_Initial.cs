@@ -18,18 +18,18 @@ namespace Plant_Box_Service.Migrations
                         City = c.String(),
                         StateId = c.Int(nullable: false),
                         ZipCode = c.Int(nullable: false),
-                        PreferenceId = c.Int(nullable: false),
-                        PaymentId = c.Int(nullable: false),
-                        Gifting = c.Boolean(nullable: false),
-                        Donating = c.Boolean(nullable: false),
+                        PreferenceId = c.Int(),
+                        PaymentId = c.Int(),
+                        Gifting = c.Boolean(),
+                        Donating = c.Boolean(),
                         AccountStatus = c.Boolean(nullable: false),
                         MemberSince = c.DateTime(nullable: false),
                         UserId = c.String(maxLength: 128),
                     })
                 .PrimaryKey(t => t.Id)
                 .ForeignKey("dbo.AspNetUsers", t => t.UserId)
-                .ForeignKey("dbo.Payments", t => t.PaymentId, cascadeDelete: true)
-                .ForeignKey("dbo.Preferences", t => t.PreferenceId, cascadeDelete: true)
+                .ForeignKey("dbo.Payments", t => t.PaymentId)
+                .ForeignKey("dbo.Preferences", t => t.PreferenceId)
                 .ForeignKey("dbo.States", t => t.StateId, cascadeDelete: true)
                 .Index(t => t.StateId)
                 .Index(t => t.PreferenceId)

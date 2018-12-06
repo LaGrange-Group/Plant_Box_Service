@@ -52,7 +52,7 @@ namespace Plant_Box_Service.Controllers
             {
                 db.Preferences.Add(preference);
                 db.SaveChanges();
-                return RedirectToAction("Create", "Customers");
+                return RedirectToAction("Create", "Customers", new { preferenceId = preference.Id });
             }
 
             return View(preference);
