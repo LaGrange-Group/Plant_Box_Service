@@ -26,6 +26,7 @@ namespace Plant_Box_Service.Controllers
                 dashboardViewModel.Customer = db.Customers.Where(c => c.UserId == userId).Single();
                 dashboardViewModel.Preference = db.Preferences.Where(p => p.Id == dashboardViewModel.Customer.PreferenceId).Single();
                 dashboardViewModel.Payments = db.Payments.Where(p => p.CustomerId == dashboardViewModel.Customer.Id).ToList();
+                dashboardViewModel.Shipments = db.Shipments.Where(s => s.CustomerId == dashboardViewModel.Customer.Id).ToList();
                 try
                 {
                     int maxPaymentId = dashboardViewModel.Payments.Max(p => p.Id);

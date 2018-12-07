@@ -18,7 +18,8 @@ namespace Plant_Box_Service.Models
         public string State { get; set; }
         public int ZipCode { get; set; }
         public bool isContinuous { get; set; }
-        //[ForeignKey("Customer")]
+        public bool Status { get; set; }
+        [ForeignKey("Customer")]
         public int CustomerId { get; set; }
         public Customer Customer { get; set; }
     }

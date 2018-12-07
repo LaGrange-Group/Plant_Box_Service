@@ -35,5 +35,6 @@ namespace Plant_Box_Service.Models
         public DbSet<Preference> Preferences { get; set; }
         public DbSet<Payment> Payments { get; set; }
         public DbSet<Gift> Gifts { get; set; }
+        public DbSet<Shipment> Shipments { get; set; }
     }
 }
