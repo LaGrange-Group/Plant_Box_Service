@@ -22,9 +22,6 @@ namespace Plant_Box_Service.Models
         [ForeignKey("Preference")]
         public int? PreferenceId { get; set; }
         public Preference Preference { get; set; }
-        [ForeignKey("Payment")]
-        public int? PaymentId { get; set; }
-        public Payment Payment { get; set; }
         public bool? Gifting { get; set; }
         public bool? Donating { get; set; }
         public bool AccountStatus { get; set; }

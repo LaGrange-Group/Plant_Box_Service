@@ -14,15 +14,35 @@ namespace Plant_Box_Service.Controllers
         // GET: Dashboard
         public ActionResult Index()
         {
-            return RedirectToAction("Dashboard");
+            return RedirectToAction("Main");
         }
 
-        public ActionResult Dashboard()
+        public ActionResult Main()
         {
-            var userId = GetId();
-            DashboardViewModel dashboardViewModel = new DashboardViewModel();
-            dashboardViewModel.Customer = db.Customers.Where(c => c.UserId == userId).Single();
-            return View();
+            try
+            {
+                var userId = GetId();
+                DashboardViewModel dashboardViewModel = new DashboardViewModel();
+                dashboardViewModel.Customer = db.Customers.Where(c => c.UserId == userId).Single();
+                dashboardViewModel.Preference = db.Preferences.Where(p => p.Id == dashboardViewModel.Customer.PreferenceId).Single();
+                dashboardViewModel.Payments = db.Payments.Where(p => p.CustomerId == dashboardViewModel.Customer.Id).ToList();
+                try
+                {
+                    int maxPaymentId = dashboardViewModel.Payments.Max(p => p.Id);
+                    dashboardViewModel.Payment = db.Payments.Where(p => p.CustomerId == dashboardViewModel.Customer.Id && p.Id == maxPaymentId).Single();
+                }
+                catch
+                {
+
+                }
+
+                return View(dashboardViewModel);
+            }
+            catch
+            {
+                return RedirectToAction("Login", "Account");
+            }
+
         }
         private string GetId()
         {

@@ -19,7 +19,7 @@
 
         <div class="form-group">
             @Html.LabelFor(model => model.IsLarge, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
+            <div class="col-md-10" style="float:left">
                 <div class="checkbox">
                     @Html.EditorFor(model => model.IsLarge)
                     @Html.ValidationMessageFor(model => model.IsLarge, "", new { @class = "text-danger" })

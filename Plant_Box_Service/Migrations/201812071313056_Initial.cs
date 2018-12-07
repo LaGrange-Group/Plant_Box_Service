@@ -19,7 +19,6 @@ namespace Plant_Box_Service.Migrations
                         StateId = c.Int(nullable: false),
                         ZipCode = c.Int(nullable: false),
                         PreferenceId = c.Int(),
-                        PaymentId = c.Int(),
                         Gifting = c.Boolean(),
                         Donating = c.Boolean(),
                         AccountStatus = c.Boolean(nullable: false),
@@ -28,12 +27,10 @@ namespace Plant_Box_Service.Migrations
                     })
                 .PrimaryKey(t => t.Id)
                 .ForeignKey("dbo.AspNetUsers", t => t.UserId)
-                .ForeignKey("dbo.Payments", t => t.PaymentId)
                 .ForeignKey("dbo.Preferences", t => t.PreferenceId)
                 .ForeignKey("dbo.States", t => t.StateId, cascadeDelete: true)
                 .Index(t => t.StateId)
                 .Index(t => t.PreferenceId)
-                .Index(t => t.PaymentId)
                 .Index(t => t.UserId);
             
             CreateTable(
@@ -95,17 +92,6 @@ namespace Plant_Box_Service.Migrations
                 .Index(t => t.RoleId);
             
             CreateTable(
-                "dbo.Payments",
-                c => new
-                    {
-                        Id = c.Int(nullable: false, identity: true),
-                        AmountDue = c.Double(nullable: false),
-                        TotalPaid = c.Double(nullable: false),
-                        Date = c.DateTime(nullable: false),
-                    })
-                .PrimaryKey(t => t.Id);
-            
-            CreateTable(
                 "dbo.Preferences",
                 c => new
                     {
@@ -152,6 +138,20 @@ namespace Plant_Box_Service.Migrations
                 .Index(t => t.CustomerId);
             
             CreateTable(
+                "dbo.Payments",
+                c => new
+                    {
+                        Id = c.Int(nullable: false, identity: true),
+                        AmountDue = c.Double(nullable: false),
+                        TotalPaid = c.Double(nullable: false),
+                        Date = c.DateTime(nullable: false),
+                        CustomerId = c.Int(nullable: false),
+                    })
+                .PrimaryKey(t => t.Id)
+                .ForeignKey("dbo.Customers", t => t.CustomerId, cascadeDelete: true)
+                .Index(t => t.CustomerId);
+            
+            CreateTable(
                 "dbo.AspNetRoles",
                 c => new
                     {
@@ -166,15 +166,16 @@ namespace Plant_Box_Service.Migrations
         public override void Down()
         {
             DropForeignKey("dbo.AspNetUserRoles", "RoleId", "dbo.AspNetRoles");
+            DropForeignKey("dbo.Payments", "CustomerId", "dbo.Customers");
             DropForeignKey("dbo.Gifts", "CustomerId", "dbo.Customers");
             DropForeignKey("dbo.Customers", "StateId", "dbo.States");
             DropForeignKey("dbo.Customers", "PreferenceId", "dbo.Preferences");
-            DropForeignKey("dbo.Customers", "PaymentId", "dbo.Payments");
             DropForeignKey("dbo.Customers", "UserId", "dbo.AspNetUsers");
             DropForeignKey("dbo.AspNetUserRoles", "UserId", "dbo.AspNetUsers");
             DropForeignKey("dbo.AspNetUserLogins", "UserId", "dbo.AspNetUsers");
             DropForeignKey("dbo.AspNetUserClaims", "UserId", "dbo.AspNetUsers");
             DropIndex("dbo.AspNetRoles", "RoleNameIndex");
+            DropIndex("dbo.Payments", new[] { "CustomerId" });
             DropIndex("dbo.Gifts", new[] { "CustomerId" });
             DropIndex("dbo.AspNetUserRoles", new[] { "RoleId" });
             DropIndex("dbo.AspNetUserRoles", new[] { "UserId" });
@@ -182,14 +183,13 @@ namespace Plant_Box_Service.Migrations
             DropIndex("dbo.AspNetUserClaims", new[] { "UserId" });
             DropIndex("dbo.AspNetUsers", "UserNameIndex");
             DropIndex("dbo.Customers", new[] { "UserId" });
-            DropIndex("dbo.Customers", new[] { "PaymentId" });
             DropIndex("dbo.Customers", new[] { "PreferenceId" });
             DropIndex("dbo.Customers", new[] { "StateId" });
             DropTable("dbo.AspNetRoles");
+            DropTable("dbo.Payments");
             DropTable("dbo.Gifts");
             DropTable("dbo.States");
             DropTable("dbo.Preferences");
-            DropTable("dbo.Payments");
             DropTable("dbo.AspNetUserRoles");
             DropTable("dbo.AspNetUserLogins");
             DropTable("dbo.AspNetUserClaims");

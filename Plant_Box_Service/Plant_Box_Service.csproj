@@ -206,9 +206,9 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201812061943008_Initial.cs" />
-    <Compile Include="Migrations\201812061943008_Initial.Designer.cs">
-      <DependentUpon>201812061943008_Initial.cs</DependentUpon>
+    <Compile Include="Migrations\201812071313056_Initial.cs" />
+    <Compile Include="Migrations\201812071313056_Initial.Designer.cs">
+      <DependentUpon>201812071313056_Initial.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -224,6 +224,7 @@
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\bootstrap-readable.css" />
     <Content Include="Content\bootstrap-theme.css" />
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
@@ -237,6 +238,7 @@
     <Content Include="ApplicationInsights.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="fonts\PlantsLetters.ttf" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.3.1.js" />
     <Content Include="Scripts\jquery-3.3.1.min.js" />
@@ -302,7 +304,7 @@
     <Content Include="Views\Gifts\Details.cshtml" />
     <Content Include="Views\Gifts\Edit.cshtml" />
     <Content Include="Views\Gifts\Index.cshtml" />
-    <Content Include="Views\Dashboard\Dashboard.cshtml" />
+    <Content Include="Views\Dashboard\Main.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -321,8 +323,8 @@
     <Content Include="Scripts\jquery-3.3.1.min.map" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201812061943008_Initial.resx">
-      <DependentUpon>201812061943008_Initial.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201812071313056_Initial.resx">
+      <DependentUpon>201812071313056_Initial.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

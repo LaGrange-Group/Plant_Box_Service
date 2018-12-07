@@ -1,0 +1,250 @@
+﻿@model Plant_Box_Service.Models.DashboardViewModel
+@{
+    ViewBag.Title = "Dashboard";
+}
+
+<h2>Preferences</h2>
+
+<div class="row" id="rcorners2">
+    <div class="col-md-6">
+        <div style="padding-top:10px">
+            <div class="form-group">
+                <span class="preference_box" style="font-size:20px">Are large plants okay?</span>
+                <div style=" float:right;">
+                    <div style=" vertical-align:middle;">
+                        @Html.EditorFor(model => model.Preference.IsLarge)
+                        @Html.ValidationMessageFor(model => model.Preference.IsLarge, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+            </div>
+        </div>
+        <br />
+        <div>
+            <div class="form-group">
+                <span class="preference_box" style="font-size:20px">Are you flexible on this size?</span>
+                <div style=" float:right;">
+                    <div style=" vertical-align:middle;">
+                        @Html.EditorFor(model => model.Preference.FlexibleSize)
+                        @Html.ValidationMessageFor(model => model.Preference.FlexibleSize, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+            </div>
+        </div>
+        <br />
+        <div>
+            <div class="form-group">
+                <span class="preference_box" style="font-size:20px">Do you enjoy cacti?</span>
+                <div style=" float:right;">
+                    <div style=" vertical-align:middle;">
+                        @Html.EditorFor(model => model.Preference.Cacti)
+                        @Html.ValidationMessageFor(model => model.Preference.Cacti, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+            </div>
+        </div>
+        <br />
+        <div>
+            <div class="form-group">
+                <span class="preference_box" style="font-size:20px">Would you like indoor food-bearing plants?</span>
+                <div style=" float:right;">
+                    <div style=" vertical-align:middle;">
+                        @Html.EditorFor(model => model.Preference.FoodBearing)
+                        @Html.ValidationMessageFor(model => model.Preference.FoodBearing, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+            </div>
+        </div>
+        <br />
+        <div>
+            <div class="form-group">
+                <span class="preference_box" style="font-size:20px">Do you enjoy Tillandsia (air) plants?</span>
+                <div style=" float:right;">
+                    <div style=" vertical-align:middle;">
+                        @Html.EditorFor(model => model.Preference.Tillandsia)
+                        @Html.ValidationMessageFor(model => model.Preference.Tillandsia, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-6" style="padding-top:10px">
+        <div>
+            <div class="form-group">
+                <span class="preference_box" style="font-size:20px">What is your preferred optimal size?</span>
+                <div style=" float:right;">
+                    <div style=" vertical-align:middle;">
+                        @Html.EditorFor(model => model.Preference.OptimalSize, new { htmlAttributes = new { @class = "form-control", style = "width:100px" } })
+                        @Html.ValidationMessageFor(model => model.Preference.OptimalSize, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+            </div>
+        </div>
+        <br />
+        <div>
+            <div class="form-group">
+                <span class="preference_box" style="font-size:20px">Do you enjoy plants that climb?</span>
+                <div style=" float:right;">
+                    <div style=" vertical-align:middle;">
+                        @Html.EditorFor(model => model.Preference.DrapeClimb)
+                        @Html.ValidationMessageFor(model => model.Preference.DrapeClimb, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+            </div>
+        </div>
+        <br />
+        <div>
+            <div class="form-group">
+                <span class="preference_box" style="font-size:20px">Would you like hanging plants?</span>
+                <div style=" float:right;">
+                    <div style=" vertical-align:middle;">
+                        @Html.EditorFor(model => model.Preference.Hanging)
+                        @Html.ValidationMessageFor(model => model.Preference.Hanging, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+            </div>
+        </div>
+        <br />
+        <div>
+            <div class="form-group">
+                <span class="preference_box" style="font-size:20px">How do you feel about bonsai plants?</span>
+                <div style=" float:right;">
+                    <div style=" vertical-align:middle;">
+                        @Html.EditorFor(model => model.Preference.Bonsai)
+                        @Html.ValidationMessageFor(model => model.Preference.Bonsai, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+            </div>
+        </div>
+        <br />
+        <div>
+            <div class="form-group">
+                <span class="preference_box" style="font-size:20px">Would you like to receive flowers?</span>
+                <div style=" float:right;">
+                    <div style=" vertical-align:middle;">
+                        @Html.EditorFor(model => model.Preference.Flowers)
+                        @Html.ValidationMessageFor(model => model.Preference.Flowers, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<br />
+<div class="row">
+    <div class="col-md-5">
+        <center>
+            <h2>Shipments</h2>
+        </center>
+        <div  id="rcorners2">
+            <table class="table_scroll" style="width:100%;">
+                <tr id="tr_line">
+                    <th style="width:25%">
+                        @Html.LabelForModel("Status")
+                    </th>
+                    <th style="width:25%">
+                        @Html.LabelForModel("Amount")
+                    </th>
+                    <th style="width:25%">
+                        @Html.LabelForModel("Total")
+                    </th>
+                    <th style="width:25%">
+                        @Html.LabelForModel("Date")
+                    </th>
+                </tr>
+                @foreach (var item in Model.Payments)
+                {
+                <tr id="tr_line">
+                    <td>
+                        @Html.Raw("Confirmed")
+                    </td>
+                    <td>
+                        @Html.Raw("$" + item.TotalPaid + ".00")
+                    </td>
+                    <td>
+                        @Html.Raw("$" + item.TotalPaid + ".00")
+                    </td>
+                    <td>
+                        @Html.Raw(Model.Payment.Date.ToString("MM/dd/yyyy"))
+                    </td>
+                </tr>
+                }
+            </table>
+        </div>
+
+    </div>
+    <div class="col-md-2">
+
+    </div>
+    <div class="col-md-5">
+        <center>
+            <h2>Payments</h2>
+        </center>
+        <div id="rcorners2">
+            <table class="table_scroll" style="width:100%;">
+                <tr id="tr_line">
+                    <th style="width:25%">
+                        @Html.LabelForModel("Status")
+                    </th>
+                    <th style="width:25%">
+                        @Html.LabelForModel("Amount")
+                    </th>
+                    <th style="width:25%">
+                        @Html.LabelForModel("Total")
+                    </th>
+                    <th style="width:25%">
+                        @Html.LabelForModel("Date")
+                    </th>
+                </tr>
+                @foreach (var item in Model.Payments)
+                {
+                <tr id="tr_line">
+                    <td>
+                        @Html.Raw("Confirmed")
+                    </td>
+                    <td>
+                        @Html.Raw("$" + item.TotalPaid + ".00")
+                    </td>
+                    <td>
+                        @Html.Raw("$" + item.TotalPaid + ".00")
+                    </td>
+                    <td>
+                        @Html.Raw(Model.Payment.Date.ToString("MM/dd/yyyy"))
+                    </td>
+                </tr>
+                }
+            </table>
+        </div>
+    </div>
+</div>
+<br />
+<div class="row">
+    <div class="col-md-12">
+        <center>
+            <h2>Personal</h2>
+        </center>
+        <div id="rcorners2" class="row">
+            <div class="col-md-3">
+                <center>
+                    <span class="personal_info" style="vertical-align: middle">@Html.Raw(Model.Customer.FirstName + " " + Model.Customer.LastName)</span>
+                </center>
+            </div>
+            <div class="col-md-3">
+                <center>
+                    <span class="personal_info">@Html.Raw(Model.Customer.Address + " " + Model.Customer.City + ", " + Model.Customer.State + " " + Model.Customer.ZipCode)</span>
+                </center>
+            </div>
+            <div class="col-md-3">
+                <center>
+                    <span class="personal_info">Member Since: @Html.Raw(Model.Customer.MemberSince.ToString())</span>
+                </center>
+            </div>
+            <div class="col-md-3">
+                <center>
+                    <span class="personal_info">Account Status: @if (Model.Customer.AccountStatus == false)
+                    { <span style="color:red">Deactivated</span>}
+                    else { <span style="color:green">Active</span>}</span>
+                </center>
+            </div>
+        </div>
+    </div>
+</div>

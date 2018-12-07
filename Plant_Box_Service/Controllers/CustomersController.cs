@@ -19,8 +19,8 @@ namespace Plant_Box_Service.Controllers
         // GET: Customers
         public ActionResult Index()
         {
-            var customers = db.Customers.Include(c => c.Payment).Include(c => c.Preference).Include(c => c.State);
-            return View(customers.ToList());
+            //var customers = db.Customers.Include(c => c.Payment).Include(c => c.Preference).Include(c => c.State);
+            return View();
         }
 
         // GET: Customers/Details/5
@@ -78,7 +78,7 @@ namespace Plant_Box_Service.Controllers
                 return RedirectToAction("Create", new { customer.PreferenceId, isValid = false, firstName = customer.FirstName, lastName = customer.LastName });
             }
 
-            ViewBag.PaymentId = new SelectList(db.Payments, "Id", "Id", customer.PaymentId);
+            //ViewBag.PaymentId = new SelectList(db.Payments, "Id", "Id", customer.PaymentId);
             ViewBag.PreferenceId = new SelectList(db.Preferences, "Id", "OptimalSize", customer.PreferenceId);
             ViewBag.StateId = new SelectList(db.States, "Id", "Name", customer.StateId);
             return View(customer);
@@ -96,7 +96,7 @@ namespace Plant_Box_Service.Controllers
             {
                 return HttpNotFound();
             }
-            ViewBag.PaymentId = new SelectList(db.Payments, "Id", "Id", customer.PaymentId);
+            //ViewBag.PaymentId = new SelectList(db.Payments, "Id", "Id", customer.PaymentId);
             ViewBag.PreferenceId = new SelectList(db.Preferences, "Id", "OptimalSize", customer.PreferenceId);
             ViewBag.StateId = new SelectList(db.States, "Id", "Name", customer.StateId);
             return View(customer);
@@ -115,7 +115,7 @@ namespace Plant_Box_Service.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            ViewBag.PaymentId = new SelectList(db.Payments, "Id", "Id", customer.PaymentId);
+            //ViewBag.PaymentId = new SelectList(db.Payments, "Id", "Id", customer.PaymentId);
             ViewBag.PreferenceId = new SelectList(db.Preferences, "Id", "OptimalSize", customer.PreferenceId);
             ViewBag.StateId = new SelectList(db.States, "Id", "Name", customer.StateId);
             return View(customer);
