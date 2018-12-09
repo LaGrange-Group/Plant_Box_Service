@@ -1,5 +1,5 @@
 ﻿@model Plant_Box_Service.Models.DashboardViewModel
-<div class="container" style="padding-top:200px">
+<div class="container" style="padding-top:200px; width:40%">
     <div class="row">
         <div class="col-sm-4"></div>
         <div class="modal-content">
@@ -17,59 +17,97 @@
                             <hr />
                             @Html.ValidationSummary(true, "", new { @class = "text-danger" })
                             <div class="form-group">
-                                @Html.LabelFor(model => model.Gift.FirstName, htmlAttributes: new { @class = "control-label col-md-2" })
-                                <div class="col-md-10">
-                                    @Html.EditorFor(model => model.Gift.FirstName, new { htmlAttributes = new { @class = "form-control" } })
-                                    @Html.ValidationMessageFor(model => model.Gift.FirstName, "", new { @class = "text-danger" })
+                                <div class="row">
+                                    <div class="col-md-5">
+                                        <div style="float:right; padding-top:10px">
+                                            <span class="preference_box" style="font-size:20px;">First name:</span>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-7">
+                                        <div style="float:left">
+                                            @Html.EditorFor(model => model.Gift.FirstName, new { htmlAttributes = new { @class = "form-control" } })
+                                            @Html.ValidationMessageFor(model => model.Gift.FirstName, "", new { @class = "text-danger" })
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
 
                             <div class="form-group">
-                                @Html.LabelFor(model => model.Gift.LastName, htmlAttributes: new { @class = "control-label col-md-2" })
-                                <div class="col-md-10">
-                                    @Html.EditorFor(model => model.Gift.LastName, new { htmlAttributes = new { @class = "form-control" } })
-                                    @Html.ValidationMessageFor(model => model.Gift.LastName, "", new { @class = "text-danger" })
+                                <div class="row">
+                                    <div class="col-md-5">
+                                        <div style="float:right; padding-top:10px">
+                                            <span class="preference_box" style="font-size:20px;">Last name:</span>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-7">
+                                        <div style="float:left">
+                                            @Html.EditorFor(model => model.Gift.LastName, new { htmlAttributes = new { @class = "form-control" } })
+                                            @Html.ValidationMessageFor(model => model.Gift.LastName, "", new { @class = "text-danger" })
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
 
                             <div class="form-group">
-                                @Html.LabelFor(model => model.Gift.Address, htmlAttributes: new { @class = "control-label col-md-2" })
-                                <div class="col-md-10">
-                                    @Html.EditorFor(model => model.Gift.Address, new { htmlAttributes = new { @class = "form-control" } })
-                                    @Html.ValidationMessageFor(model => model.Gift.Address, "", new { @class = "text-danger" })
+                                <div class="row">
+                                    <div class="col-md-5">
+                                        <div style="float:right; padding-top:10px">
+                                            <span class="preference_box" style="font-size:20px;">Address:</span>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-7">
+                                        <div style="float:left">
+                                            @Html.EditorFor(model => model.Gift.Address, new { htmlAttributes = new { @class = "form-control" } })
+                                            @Html.ValidationMessageFor(model => model.Gift.Address, "", new { @class = "text-danger" })
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
 
                             <div class="form-group">
-                                @Html.LabelFor(model => model.Gift.City, htmlAttributes: new { @class = "control-label col-md-2" })
-                                <div class="col-md-10">
-                                    @Html.EditorFor(model => model.Gift.City, new { htmlAttributes = new { @class = "form-control" } })
-                                    @Html.ValidationMessageFor(model => model.Gift.City, "", new { @class = "text-danger" })
+                                <div class="row">
+                                    <div class="col-md-5">
+                                        <div style="float:right; padding-top:10px">
+                                            <span class="preference_box" style="font-size:20px;">City:</span>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-7">
+                                        <div style="float:left">
+                                            @Html.EditorFor(model => model.Gift.City, new { htmlAttributes = new { @class = "form-control" } })
+                                            @Html.ValidationMessageFor(model => model.Gift.City, "", new { @class = "text-danger" })
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
 
                             <div class="form-group">
-                                @Html.LabelFor(model => model.Gift.StateId, new { @class = "control-label col-md-2" })
-                                <div class="col-md-10">
-                                    @Html.DropDownListFor(model => model.Gift.StateId, new SelectList(Model.States, "Id", "Name"), "", new { @class = "form-control" })
-                                    @Html.ValidationMessageFor(model => model.Gift.StateId, "", new { @class = "text-danger" })
+                                <div class="row">
+                                    <div class="col-md-5">
+                                        <div style="float:right; padding-top:10px">
+                                            <span class="preference_box" style="font-size:20px;">State:</span>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-7">
+                                        <div style="float:left">
+                                            @Html.DropDownListFor(model => model.Gift.StateId, new SelectList(Model.States, "Id", "Name"), "", new { @class = "form-control" })
+                                            @Html.ValidationMessageFor(model => model.Gift.StateId, "", new { @class = "text-danger" })
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
 
                             <div class="form-group">
-                                @Html.LabelFor(model => model.Gift.ZipCode, htmlAttributes: new { @class = "control-label col-md-2" })
-                                <div class="col-md-10">
-                                    @Html.EditorFor(model => model.Gift.ZipCode, new { htmlAttributes = new { @class = "form-control" } })
-                                    @Html.ValidationMessageFor(model => model.Gift.ZipCode, "", new { @class = "text-danger" })
-                                </div>
-                            </div>
-
-                            <div class="form-group">
-                                @Html.LabelFor(model => model.Gift.isContinuous, htmlAttributes: new { @class = "control-label col-md-2" })
-                                <div class="col-md-10">
-                                    <div class="checkbox">
-                                        @Html.EditorFor(model => model.Gift.isContinuous)
-                                        @Html.ValidationMessageFor(model => model.Gift.isContinuous, "", new { @class = "text-danger" })
+                                <div class="row">
+                                    <div class="col-md-5">
+                                        <div style="float:right; padding-top:10px">
+                                            <span class="preference_box" style="font-size:20px;">ZipCode:</span>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-7">
+                                        <div style="float:left">
+                                            @Html.EditorFor(model => model.Gift.ZipCode, new { htmlAttributes = new { @class = "form-control" } })
+                                            @Html.ValidationMessageFor(model => model.Gift.ZipCode, "", new { @class = "text-danger" })
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -78,8 +116,33 @@
                     @Html.HiddenFor(model => model.Gift.Id)
                         <div class="modal-footer">
                             <div class="form-group">
-                                <div class="col-md-offset-2 col-md-10">
-                                    <input type="submit" value="Gift" class="btn btn-primary" style="width:150px" />
+                                <div class="row">
+                                    <div class="col-md-8">
+                                        <div class="form-group">
+
+                                            <div class="row">
+                                                <div class="col-md-9">
+                                                    <div style="padding-top:10px">
+                                                        <span class="preference_box" style="font-size:20px;">Gift to this person every month?</span>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-3">
+                                                    <div>
+                                                        <label class="switch">
+                                                            @Html.CheckBoxFor(model => model.Gift.isContinuous)
+                                                            <div class="slider round">
+                                                            </div>
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div>
+                                            <input type="submit" value="Gift" class="btn btn-primary" style="width:150px" />
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>

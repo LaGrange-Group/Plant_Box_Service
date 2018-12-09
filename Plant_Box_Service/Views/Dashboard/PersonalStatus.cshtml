@@ -1,4 +1,5 @@
-﻿@model Plant_Box_Service.Models.DashboardViewModel
+﻿
+@model Plant_Box_Service.Models.DashboardViewModel
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <div class="container" style="padding-top:200px; width:40%">
@@ -8,7 +9,7 @@
             <div class="modal-header">
                 <center>
                     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                    <h3 class="modal-title" id="myGiftStatusModal-label">Update Gift Status</h3>
+                    <h3 class="modal-title" id="myPersonalStatusModal-label">Update Gift Status</h3>
                 </center>
                 <div>
                     @using (Html.BeginForm())
@@ -18,12 +19,12 @@
                         <div class="row">
                             <div class="col-md-6" style="padding:40px">
                                 <center>
-                                    <button type="button" class="btn btn-primary btn-large" id="Gift_Update" style="width:200px; padding:20px">Update Gift Details</button>
+                                    <button type="button" class="btn btn-success btn-large" id="Customer_Update" style="width:200px; padding:20px">Update Information</button>
                                 </center>
                             </div>
                             <div class="col-md-6" style="padding:40px">
                                 <center>
-                                    @Html.ActionLink("Turn Off Gifting", "TurnOffGifting", "Dashboard", new { customerId = Model.Customer.Id }, new { @class = "btn btn-danger btn-large", style = "width:200px; padding:20px" })
+                                    @Html.ActionLink("Deactivate Account", "DeactivateAccount", "Dashboard", new { customerId = Model.Customer.Id }, new { @class = "btn btn-danger btn-large", style = "width:200px; padding:20px" })
                                 </center>
                             </div>
                         </div>
@@ -34,14 +35,14 @@
     </div>
 </div>
 
-<div class="modal fade" id="myGiftUpdateModal" role="dialog" data-url='@Url.Action("GiftUpdate","Dashboard")'></div>
+<div class="modal fade" id="myCustomerUpdateModal" role="dialog" data-url='@Url.Action("PersonalUpdate","Dashboard")'></div>
 
 <script type="text/javascript">
     $(document).ready(function () {
 
-        $('#Gift_Update').click(function () {
+        $('#Customer_Update').click(function () {
 
-            var url = $('#myGiftUpdateModal').data('url');
+            var url = $('#myCustomerUpdateModal').data('url');
             $.get(url, function (data) {
 
                 $("#myModal").html(data);

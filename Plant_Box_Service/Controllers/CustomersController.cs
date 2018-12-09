@@ -66,6 +66,7 @@ namespace Plant_Box_Service.Controllers
                 var userId = User.Identity.GetUserId();
                 customer.UserId = userId;
                 customer.MemberSince = DateTime.Now;
+                customer.Donating = false;
                 if (Geocode.CheckValidAddress(customer))
                 {
                     if (Geocode.isValidLocation)

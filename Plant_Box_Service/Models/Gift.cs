@@ -19,7 +19,7 @@ namespace Plant_Box_Service.Models
         public int? StateId{ get; set; }
         public State State { get; set; }
         public int? ZipCode { get; set; }
-        public bool? isContinuous { get; set; }
+        public bool isContinuous { get; set; }
         public bool? Status { get; set; }
     }
 }

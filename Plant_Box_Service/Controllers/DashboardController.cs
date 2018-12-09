@@ -6,6 +6,7 @@ using System.Data.Entity;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using Trash_Collector.Class;
 
 namespace Plant_Box_Service.Controllers
 {
@@ -46,7 +47,7 @@ namespace Plant_Box_Service.Controllers
                 {
 
                 }
-
+                ViewBag.Sizes = new List<string>() { "Small", "Medium", "Large" };
                 return View(dashboardViewModel);
             }
             catch
@@ -93,6 +94,7 @@ namespace Plant_Box_Service.Controllers
         {
             DashboardViewModel dashboardViewModel = new DashboardViewModel();
             dashboardViewModel.Gift = new Gift();
+            dashboardViewModel.Gift.isContinuous = false;
             db.Gifts.Add(dashboardViewModel.Gift);
             db.SaveChanges();
             dashboardViewModel.States = db.States.ToList();
@@ -139,11 +141,11 @@ namespace Plant_Box_Service.Controllers
             dashboardViewModel.Customer = db.Customers.Where(c => c.UserId == userId).Single();
             return PartialView(dashboardViewModel);
         }
-        [HttpPost]
-        public ActionResult GiftStatus(DashboardViewModel dashboardViewModel)
-        {
-            return RedirectToAction("Main");
-        }
+        //[HttpPost]
+        //public ActionResult GiftStatus(DashboardViewModel dashboardViewModel)
+        //{
+        //    return RedirectToAction("Main");
+        //}
 
         public ActionResult TurnOffGifting(int customerId)
         {
@@ -179,6 +181,51 @@ namespace Plant_Box_Service.Controllers
             {
                 customer.Gifting = false;
             }
+            db.Entry(customer).State = EntityState.Modified;
+            db.SaveChanges();
+            return RedirectToAction("Main");
+        }
+
+        public ActionResult PersonalUpdate(bool isValid = true)
+        {
+            DashboardViewModel dashboardViewModel = new DashboardViewModel();
+            var userId = GetId();
+            dashboardViewModel.Customer = db.Customers.Where(c => c.UserId == userId).Single();
+            dashboardViewModel.States = db.States.ToList();
+            return PartialView(dashboardViewModel);
+        }
+        [HttpPost]
+        public ActionResult PersonalUpdate(DashboardViewModel dashboardViewModel)
+        {
+            if (Geocode.CheckValidAddress(dashboardViewModel.Customer))
+            {
+                if (Geocode.isValidLocation)
+                {
+                    db.Entry(dashboardViewModel.Customer).State = EntityState.Modified;
+                    db.SaveChanges();
+                    return RedirectToAction("Main", "Dashboard");
+                }
+            }
+            return RedirectToAction("PersonalUpdate", new { isValid = false});
+        }
+
+        public ActionResult PersonalStatus()
+        {
+            DashboardViewModel dashboardViewModel = new DashboardViewModel();
+            var userId = GetId();
+            dashboardViewModel.Customer = db.Customers.Where(c => c.UserId == userId).Single();
+            return PartialView(dashboardViewModel);
+        }
+        [HttpPost]
+        public ActionResult PersonalStatus(DashboardViewModel dashboardViewModel)
+        {
+            return RedirectToAction("Main");
+        }
+
+        public ActionResult DeactivateAccount(int customerId)
+        {
+            Customer customer = db.Customers.Where(c => c.Id == customerId).Single();
+            customer.AccountStatus = false;
             db.Entry(customer).State = EntityState.Modified;
             db.SaveChanges();
             return RedirectToAction("Main");

@@ -1,0 +1,134 @@
+﻿@model Plant_Box_Service.Models.DashboardViewModel
+<div class="container" style="padding-top:200px; width:40%">
+    <div class="row">
+        <div class="col-sm-4"></div>
+        <div class="modal-content">
+            <div class="modal-header">
+                <center>
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h3 class="modal-title" id="myCustomerUpdateModal-label">Update Personal Information</h3>
+                </center>
+                <div>
+                    @using (Html.BeginForm())
+                    {
+                        @Html.AntiForgeryToken()
+                    <div class="form-horizontal">
+                        <hr />
+                        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                        <div class="form-group">
+                            <div class="row">
+                                <div class="col-md-5">
+                                    <div style="float:right; padding-top:10px">
+                                        <span class="preference_box" style="font-size:20px;">First name:</span>
+                                    </div>
+                                </div>
+                                <div class="col-md-7">
+                                    <div style="float:left">
+                                        @Html.EditorFor(model => model.Customer.FirstName, new { htmlAttributes = new { @class = "form-control" } })
+                                        @Html.ValidationMessageFor(model => model.Customer.FirstName, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <div class="row">
+                                <div class="col-md-5">
+                                    <div style="float:right; padding-top:10px">
+                                        <span class="preference_box" style="font-size:20px;">Last name:</span>
+                                    </div>
+                                </div>
+                                <div class="col-md-7">
+                                    <div style="float:left">
+                                        @Html.EditorFor(model => model.Customer.LastName, new { htmlAttributes = new { @class = "form-control" } })
+                                        @Html.ValidationMessageFor(model => model.Customer.LastName, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <div class="row">
+                                <div class="col-md-5">
+                                    <div style="float:right; padding-top:10px">
+                                        <span class="preference_box" style="font-size:20px;">Address:</span>
+                                    </div>
+                                </div>
+                                <div class="col-md-7">
+                                    <div style="float:left">
+                                        @Html.EditorFor(model => model.Customer.Address, new { htmlAttributes = new { @class = "form-control" } })
+                                        @Html.ValidationMessageFor(model => model.Customer.Address, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <div class="row">
+                                <div class="col-md-5">
+                                    <div style="float:right; padding-top:10px">
+                                        <span class="preference_box" style="font-size:20px;">City:</span>
+                                    </div>
+                                </div>
+                                <div class="col-md-7">
+                                    <div style="float:left">
+                                        @Html.EditorFor(model => model.Customer.City, new { htmlAttributes = new { @class = "form-control" } })
+                                        @Html.ValidationMessageFor(model => model.Customer.City, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <div class="row">
+                                <div class="col-md-5">
+                                    <div style="float:right; padding-top:10px">
+                                        <span class="preference_box" style="font-size:20px;">State:</span>
+                                    </div>
+                                </div>
+                                <div class="col-md-7">
+                                    <div style="float:left">
+                                        @Html.DropDownListFor(model => model.Customer.StateId, new SelectList(Model.States, "Id", "Name"), "", new { @class = "form-control" })
+                                        @Html.ValidationMessageFor(model => model.Customer.StateId, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <div class="row">
+                                <div class="col-md-5">
+                                    <div style="float:right; padding-top:10px">
+                                        <span class="preference_box" style="font-size:20px;">ZipCode:</span>
+                                    </div>
+                                </div>
+                                <div class="col-md-7">
+                                    <div style="float:left">
+                                        @Html.EditorFor(model => model.Customer.ZipCode, new { htmlAttributes = new { @class = "form-control" } })
+                                        @Html.ValidationMessageFor(model => model.Customer.ZipCode, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                        @Html.HiddenFor(model => model.Customer.Id)
+                        @Html.HiddenFor(model => model.Customer.PreferenceId)
+                        @Html.HiddenFor(model => model.Customer.Gifting)
+                        @Html.HiddenFor(model => model.Customer.GiftId)
+                        @Html.HiddenFor(model => model.Customer.Donating)
+                        @Html.HiddenFor(model => model.Customer.AccountStatus)
+                        @Html.HiddenFor(model => model.Customer.MemberSince)
+                        @Html.HiddenFor(model => model.Customer.UserId)
+                        <div class="modal-footer">
+                            <div class="form-group">
+                                <div class="col-md-offset-2 col-md-10">
+                                    <input type="submit" value="Update" class="btn btn-success" style="width:150px" />
+                                </div>
+                            </div>
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

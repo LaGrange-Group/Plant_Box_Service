@@ -105,7 +105,7 @@ namespace Plant_Box_Service.Migrations
                         City = c.String(),
                         StateId = c.Int(),
                         ZipCode = c.Int(),
-                        isContinuous = c.Boolean(),
+                        isContinuous = c.Boolean(nullable: false),
                         Status = c.Boolean(),
                     })
                 .PrimaryKey(t => t.Id)

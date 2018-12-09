@@ -13,8 +13,11 @@
                     <span class="preference_box" style="font-size:20px">Are large plants okay?</span>
                     <div style=" float:right;">
                         <div style=" vertical-align:middle;">
-                            @Html.EditorFor(model => model.Preference.IsLarge)
-                            @Html.ValidationMessageFor(model => model.Preference.IsLarge, "", new { @class = "text-danger" })
+                            <label class="switch">
+                                @Html.CheckBoxFor(model => model.Preference.IsLarge)
+                                <div class="slider round">
+                                </div>
+                            </label>
                         </div>
                     </div>
                 </div>
@@ -25,8 +28,11 @@
                     <span class="preference_box" style="font-size:20px">Are you flexible on this size?</span>
                     <div style=" float:right;">
                         <div style=" vertical-align:middle;">
-                            @Html.EditorFor(model => model.Preference.FlexibleSize)
-                            @Html.ValidationMessageFor(model => model.Preference.FlexibleSize, "", new { @class = "text-danger" })
+                            <label class="switch">
+                                @Html.CheckBoxFor(model => model.Preference.FlexibleSize)
+                                <div class="slider round">
+                                </div>
+                            </label>
                         </div>
                     </div>
                 </div>
@@ -37,8 +43,11 @@
                     <span class="preference_box" style="font-size:20px">Do you enjoy cacti?</span>
                     <div style=" float:right;">
                         <div style=" vertical-align:middle;">
-                            @Html.EditorFor(model => model.Preference.Cacti)
-                            @Html.ValidationMessageFor(model => model.Preference.Cacti, "", new { @class = "text-danger" })
+                            <label class="switch">
+                                @Html.CheckBoxFor(model => model.Preference.Cacti)
+                                <div class="slider round">
+                                </div>
+                            </label>
                         </div>
                     </div>
                 </div>
@@ -49,8 +58,11 @@
                     <span class="preference_box" style="font-size:20px">Would you like indoor food-bearing plants?</span>
                     <div style=" float:right;">
                         <div style=" vertical-align:middle;">
-                            @Html.EditorFor(model => model.Preference.FoodBearing)
-                            @Html.ValidationMessageFor(model => model.Preference.FoodBearing, "", new { @class = "text-danger" })
+                            <label class="switch">
+                                @Html.CheckBoxFor(model => model.Preference.FoodBearing)
+                                <div class="slider round">
+                                </div>
+                            </label>
                         </div>
                     </div>
                 </div>
@@ -61,8 +73,11 @@
                     <span class="preference_box" style="font-size:20px">Do you enjoy Tillandsia (air) plants?</span>
                     <div style=" float:right;">
                         <div style=" vertical-align:middle;">
-                            @Html.EditorFor(model => model.Preference.Tillandsia)
-                            @Html.ValidationMessageFor(model => model.Preference.Tillandsia, "", new { @class = "text-danger" })
+                            <label class="switch">
+                                @Html.CheckBoxFor(model => model.Preference.Tillandsia)
+                                <div class="slider round">
+                                </div>
+                            </label>
                         </div>
                     </div>
                 </div>
@@ -74,7 +89,7 @@
                     <span class="preference_box" style="font-size:20px">What is your preferred optimal size?</span>
                     <div style=" float:right;">
                         <div style=" vertical-align:middle;">
-                            @Html.EditorFor(model => model.Preference.OptimalSize, new { htmlAttributes = new { @class = "form-control", style = "width:100px" } })
+                            @Html.DropDownListFor(model => model.Preference.OptimalSize, new SelectList(ViewBag.Sizes), "", new { @class = "form-control" })
                             @Html.ValidationMessageFor(model => model.Preference.OptimalSize, "", new { @class = "text-danger" })
                         </div>
                     </div>
@@ -86,8 +101,11 @@
                     <span class="preference_box" style="font-size:20px">Do you enjoy plants that climb?</span>
                     <div style=" float:right;">
                         <div style=" vertical-align:middle;">
-                            @Html.EditorFor(model => model.Preference.DrapeClimb)
-                            @Html.ValidationMessageFor(model => model.Preference.DrapeClimb, "", new { @class = "text-danger" })
+                            <label class="switch">
+                                @Html.CheckBoxFor(model => model.Preference.DrapeClimb)
+                                <div class="slider round">
+                                </div>
+                            </label>
                         </div>
                     </div>
                 </div>
@@ -98,8 +116,11 @@
                     <span class="preference_box" style="font-size:20px">Would you like hanging plants?</span>
                     <div style=" float:right;">
                         <div style=" vertical-align:middle;">
-                            @Html.EditorFor(model => model.Preference.Hanging)
-                            @Html.ValidationMessageFor(model => model.Preference.Hanging, "", new { @class = "text-danger" })
+                            <label class="switch">
+                                @Html.CheckBoxFor(model => model.Preference.Hanging)
+                                <div class="slider round">
+                                </div>
+                            </label>
                         </div>
                     </div>
                 </div>
@@ -110,8 +131,11 @@
                     <span class="preference_box" style="font-size:20px">How do you feel about bonsai plants?</span>
                     <div style=" float:right;">
                         <div style=" vertical-align:middle;">
-                            @Html.EditorFor(model => model.Preference.Bonsai)
-                            @Html.ValidationMessageFor(model => model.Preference.Bonsai, "", new { @class = "text-danger" })
+                            <label class="switch">
+                                @Html.CheckBoxFor(model => model.Preference.Bonsai)
+                                <div class="slider round">
+                                </div>
+                            </label>
                         </div>
                     </div>
                 </div>
@@ -122,8 +146,11 @@
                     <span class="preference_box" style="font-size:20px">Would you like to receive flowers?</span>
                     <div style=" float:right;">
                         <div style=" vertical-align:middle;">
-                            @Html.EditorFor(model => model.Preference.Flowers)
-                            @Html.ValidationMessageFor(model => model.Preference.Flowers, "", new { @class = "text-danger" })
+                            <label class="switch">
+                                @Html.CheckBoxFor(model => model.Preference.Flowers)
+                                <div class="slider round">
+                                </div>
+                            </label>
                         </div>
                     </div>
                 </div>
@@ -139,7 +166,14 @@
         <div class="col-md-12">
             <div class="form-group" style="float:right; padding-top: 10px">
                 <div>
-                    <input type="submit" value="Update" id="Update_Preferences" class="btn btn-primary btn-larg" style="width:200px" />
+                    @if (Model.Customer.AccountStatus == true)
+                    {
+                        <input type="submit" value="Update" id="Update_Preferences" class="btn btn-primary btn-larg" style="width:200px" />
+                    }
+                    else
+                    {
+                        @Html.ActionLink("Update", "Main", "Dashboard", new { @class = "btn btn-primary btn-large", style = "width:200px" })
+                    }
                 </div>
             </div>
         </div>
@@ -174,7 +208,8 @@
                             {<span style="color:red">Deactivated</span>}
                             else
                             { <span style="color:green">Active</span>}
-                            @if (Model.Customer.Donating == true) { <span style="color:orange; font-size:25px">Donating</span>}
+                            @if (Model.Customer.Donating == true)
+                            {<span style="color:orange; font-size:25px">Donating</span>}
                         </span>
                     </center>
                 </div>
@@ -186,17 +221,55 @@
             <div>
                 <div class="col-md-4">
                     <div style="padding-top:20px">
-                        <button type="button" class="btn btn-primary btn-large" id="Gift_Form" style="width:200px">Gift</button>
+                        @if (Model.Customer.AccountStatus == true)
+                        {
+                            if (Model.Customer.Gifting == true)
+                            {
+                                <button type="button" class="btn btn-primary btn-large" id="Gift_Status" style="width:200px">Update Gift Status</button>
+                            }
+                            else
+                            {
+                                <button type="button" class="btn btn-primary btn-large" id="Gift_Form" style="width:200px">Gift</button>
+                            }
+                        }
+                        else
+                        {
+                            @Html.ActionLink("Gift", "Main", "Dashboard", new { @class = "btn btn-primary btn-large", style = "width:200px" })
+                        }
+
                     </div>
                 </div>
                 <div class="col-md-4" style="padding-top:20px">
                     <div>
-                        <button type="button" class="btn btn-warning btn-large" id="Donate_Toggle" style="width:200px">Donate</button>
+                        @if (Model.Customer.AccountStatus == true)
+                        {
+                            if (Model.Customer.Donating == true || Model.Customer.Donating == null)
+                            {
+                                <button type="button" class="btn btn-danger btn-large" id="Donate_Toggle" style="width:200px">Turn Off Donating</button>
+                            }
+                            else
+                            {
+                                <button type="button" class="btn btn-warning btn-large" id="Donate_Toggle" style="width:200px">Donate</button>
+                            }
+                        }
+                        else
+                        {
+                            @Html.ActionLink("Donate", "Main", "Dashboard", new { @class = "btn btn-warning btn-large", style = "width:200px" })
+                        }
+
                     </div>
                 </div>
                 <div class="col-md-4" style="padding-top:20px">
                     <div>
-                        @Html.ActionLink("Change Personal", "UpdatePersonal", "Dashboard", new { model = Model }, new { @class = "btn btn-success btn-large", style = "width:200px" })
+                        @if (Model.Customer.AccountStatus == true)
+                        {
+                            <button type="button" class="btn btn-success btn-large" id="Customer_Status" style="width:200px">Change Personal</button>
+                        }
+                        else
+                        {
+                            @Html.ActionLink("Change Personal", "Main", "Dashboard", new { @class = "btn btn-success btn-large", style = "width:200px" })
+                        }
+
                     </div>
                 </div>
             </div>
@@ -263,16 +336,16 @@
         <div id="rcorners2">
             <table class="table_scroll" style="width:100%;">
                 <tr id="tr_line">
-                    <th style="width:25%">
+                    <th style="width:10%">
                         @Html.LabelForModel("Status")
                     </th>
-                    <th style="width:25%">
+                    <th style="width:10%">
                         @Html.LabelForModel("Amount")
                     </th>
-                    <th style="width:25%">
+                    <th style="width:10%">
                         @Html.LabelForModel("Total")
                     </th>
-                    <th style="width:25%">
+                    <th style="width:10%">
                         @Html.LabelForModel("Date")
                     </th>
                 </tr>
@@ -303,7 +376,6 @@
     <div>
         <div class="row">
             <div class="col-md-2">
-
             </div>
             <div class="col-md-8">
                 <div class="row">
@@ -319,14 +391,10 @@
                         <img src="http://www.clipartsfree.net/vector/large/secretlondon_Gold_present_Vector_Clipart.png" style="width:60px; height:62px; float:left;" />
                     </div>
                 </div>
-
-
-
             </div>
             <div class="col-md-2"></div>
         </div>
         <div class="row">
-
             <div id="rcorners2" class="row">
                 <div class="col-md-4">
                     <center>
@@ -349,22 +417,38 @@
                     </center>
                 </div>
             </div>
-
-        </div>
-        <div class="row">
-            <center>
-                <div>
-                    <div class="col-md-12">
-                        <div style="padding-top:20px">
-                            <button type="button" class="btn btn-primary btn-large" id="Gift_Status" style="width:200px">Update Gift Status</button>
-                        </div>
-                    </div>
-                </div>
-            </center>
         </div>
     </div>
 }
-
+@if (Model.Customer.Donating == true)
+{
+    <div>
+        <div class="row">
+            <div id="rcorners2" class="row">
+                <div class="row">
+                    <div class="col-md-2">
+                    </div>
+                    <div class="col-md-8">
+                        <div class="row">
+                            <div class="col-md-2">
+                                <img src="https://i.imgur.com/ZJRRVFR.png" style="width:60px; height:60px; float:right; " />
+                            </div>
+                            <div class="col-md-8">
+                                <center>
+                                    <h2>You are Donating this Month!</h2>
+                                </center>
+                            </div>
+                            <div class="col-md-2">
+                                <img src="https://i.imgur.com/vPvfebp.png" style="width:60px; height:60px; float:left;" />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-2"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+}
 
 
 
@@ -460,6 +544,44 @@
         $('#Donate_Toggle').click(function () {
 
             var url = $('#myDonatingModal').data('url');
+            $.get(url, function (data) {
+
+                $("#myModal").html(data);
+                $("#myModal").modal('show');
+            });
+        });
+
+    });
+</script>
+
+<div class="modal fade" id="myCustomerUpdateModal" role="dialog" data-url='@Url.Action("PersonalUpdate","Dashboard")'></div>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+
+        $('#Customer_Update').click(function () {
+
+            var url = $('#myCustomerUpdateModal').data('url');
+            $.get(url, function (data) {
+
+                $("#myModal").html(data);
+                $("#myModal").modal('show');
+            });
+        });
+
+    });
+</script>
+
+
+
+<div class="modal fade" id="myPersonalStatusModal" role="dialog" data-url='@Url.Action("PersonalStatus","Dashboard")'></div>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+
+        $('#Customer_Status').click(function () {
+
+            var url = $('#myPersonalStatusModal').data('url');
             $.get(url, function (data) {
 
                 $("#myModal").html(data);
