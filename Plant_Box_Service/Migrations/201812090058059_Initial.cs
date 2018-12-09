@@ -20,6 +20,7 @@ namespace Plant_Box_Service.Migrations
                         ZipCode = c.Int(nullable: false),
                         PreferenceId = c.Int(),
                         Gifting = c.Boolean(),
+                        GiftId = c.Int(),
                         Donating = c.Boolean(),
                         AccountStatus = c.Boolean(nullable: false),
                         MemberSince = c.DateTime(nullable: false),
@@ -27,10 +28,12 @@ namespace Plant_Box_Service.Migrations
                     })
                 .PrimaryKey(t => t.Id)
                 .ForeignKey("dbo.AspNetUsers", t => t.UserId)
+                .ForeignKey("dbo.Gifts", t => t.GiftId)
                 .ForeignKey("dbo.Preferences", t => t.PreferenceId)
                 .ForeignKey("dbo.States", t => t.StateId, cascadeDelete: true)
                 .Index(t => t.StateId)
                 .Index(t => t.PreferenceId)
+                .Index(t => t.GiftId)
                 .Index(t => t.UserId);
             
             CreateTable(
@@ -92,6 +95,33 @@ namespace Plant_Box_Service.Migrations
                 .Index(t => t.RoleId);
             
             CreateTable(
+                "dbo.Gifts",
+                c => new
+                    {
+                        Id = c.Int(nullable: false, identity: true),
+                        FirstName = c.String(),
+                        LastName = c.String(),
+                        Address = c.String(),
+                        City = c.String(),
+                        StateId = c.Int(),
+                        ZipCode = c.Int(),
+                        isContinuous = c.Boolean(),
+                        Status = c.Boolean(),
+                    })
+                .PrimaryKey(t => t.Id)
+                .ForeignKey("dbo.States", t => t.StateId)
+                .Index(t => t.StateId);
+            
+            CreateTable(
+                "dbo.States",
+                c => new
+                    {
+                        Id = c.Int(nullable: false, identity: true),
+                        Name = c.String(),
+                    })
+                .PrimaryKey(t => t.Id);
+            
+            CreateTable(
                 "dbo.Preferences",
                 c => new
                     {
@@ -109,34 +139,6 @@ namespace Plant_Box_Service.Migrations
                         PerishablesOnly = c.Boolean(),
                     })
                 .PrimaryKey(t => t.Id);
-            
-            CreateTable(
-                "dbo.States",
-                c => new
-                    {
-                        Id = c.Int(nullable: false, identity: true),
-                        Name = c.String(),
-                    })
-                .PrimaryKey(t => t.Id);
-            
-            CreateTable(
-                "dbo.Gifts",
-                c => new
-                    {
-                        Id = c.Int(nullable: false, identity: true),
-                        FirstName = c.String(),
-                        LastName = c.String(),
-                        Address = c.String(),
-                        City = c.String(),
-                        State = c.String(),
-                        ZipCode = c.Int(nullable: false),
-                        isContinuous = c.Boolean(nullable: false),
-                        Status = c.Boolean(nullable: false),
-                        CustomerId = c.Int(nullable: false),
-                    })
-                .PrimaryKey(t => t.Id)
-                .ForeignKey("dbo.Customers", t => t.CustomerId, cascadeDelete: true)
-                .Index(t => t.CustomerId);
             
             CreateTable(
                 "dbo.Payments",
@@ -185,9 +187,10 @@ namespace Plant_Box_Service.Migrations
             DropForeignKey("dbo.Shipments", "CustomerId", "dbo.Customers");
             DropForeignKey("dbo.AspNetUserRoles", "RoleId", "dbo.AspNetRoles");
             DropForeignKey("dbo.Payments", "CustomerId", "dbo.Customers");
-            DropForeignKey("dbo.Gifts", "CustomerId", "dbo.Customers");
             DropForeignKey("dbo.Customers", "StateId", "dbo.States");
             DropForeignKey("dbo.Customers", "PreferenceId", "dbo.Preferences");
+            DropForeignKey("dbo.Customers", "GiftId", "dbo.Gifts");
+            DropForeignKey("dbo.Gifts", "StateId", "dbo.States");
             DropForeignKey("dbo.Customers", "UserId", "dbo.AspNetUsers");
             DropForeignKey("dbo.AspNetUserRoles", "UserId", "dbo.AspNetUsers");
             DropForeignKey("dbo.AspNetUserLogins", "UserId", "dbo.AspNetUsers");
@@ -195,21 +198,22 @@ namespace Plant_Box_Service.Migrations
             DropIndex("dbo.Shipments", new[] { "CustomerId" });
             DropIndex("dbo.AspNetRoles", "RoleNameIndex");
             DropIndex("dbo.Payments", new[] { "CustomerId" });
-            DropIndex("dbo.Gifts", new[] { "CustomerId" });
+            DropIndex("dbo.Gifts", new[] { "StateId" });
             DropIndex("dbo.AspNetUserRoles", new[] { "RoleId" });
             DropIndex("dbo.AspNetUserRoles", new[] { "UserId" });
             DropIndex("dbo.AspNetUserLogins", new[] { "UserId" });
             DropIndex("dbo.AspNetUserClaims", new[] { "UserId" });
             DropIndex("dbo.AspNetUsers", "UserNameIndex");
             DropIndex("dbo.Customers", new[] { "UserId" });
+            DropIndex("dbo.Customers", new[] { "GiftId" });
             DropIndex("dbo.Customers", new[] { "PreferenceId" });
             DropIndex("dbo.Customers", new[] { "StateId" });
             DropTable("dbo.Shipments");
             DropTable("dbo.AspNetRoles");
             DropTable("dbo.Payments");
-            DropTable("dbo.Gifts");
-            DropTable("dbo.States");
             DropTable("dbo.Preferences");
+            DropTable("dbo.States");
+            DropTable("dbo.Gifts");
             DropTable("dbo.AspNetUserRoles");
             DropTable("dbo.AspNetUserLogins");
             DropTable("dbo.AspNetUserClaims");

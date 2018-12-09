@@ -15,12 +15,11 @@ namespace Plant_Box_Service.Models
         public string LastName { get; set; }
         public string Address { get; set; }
         public string City { get; set; }
-        public string State { get; set; }
-        public int ZipCode { get; set; }
-        public bool isContinuous { get; set; }
-        public bool Status { get; set; }
-        [ForeignKey("Customer")]
-        public int CustomerId { get; set; }
-        public Customer Customer { get; set; }
+        [ForeignKey("State")]
+        public int? StateId{ get; set; }
+        public State State { get; set; }
+        public int? ZipCode { get; set; }
+        public bool? isContinuous { get; set; }
+        public bool? Status { get; set; }
     }
 }

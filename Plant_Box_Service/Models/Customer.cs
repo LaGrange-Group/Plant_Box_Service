@@ -23,6 +23,9 @@ namespace Plant_Box_Service.Models
         public int? PreferenceId { get; set; }
         public Preference Preference { get; set; }
         public bool? Gifting { get; set; }
+        [ForeignKey("Gift")]
+        public int? GiftId {get; set;}
+        public Gift Gift { get; set; }
         public bool? Donating { get; set; }
         public bool AccountStatus { get; set; }
         public DateTime MemberSince { get; set; }

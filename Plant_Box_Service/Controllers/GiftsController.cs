@@ -17,8 +17,8 @@ namespace Plant_Box_Service.Controllers
         // GET: Gifts
         public ActionResult Index()
         {
-            var gifts = db.Gifts.Include(g => g.Customer);
-            return View(gifts.ToList());
+            //var gifts = db.Gifts.Include(g => g.Customer);
+            return View();
         }
 
         // GET: Gifts/Details/5
@@ -57,7 +57,7 @@ namespace Plant_Box_Service.Controllers
                 return RedirectToAction("Index");
             }
 
-            ViewBag.CustomerId = new SelectList(db.Customers, "Id", "FirstName", gift.CustomerId);
+            //ViewBag.CustomerId = new SelectList(db.Customers, "Id", "FirstName", gift.CustomerId);
             return View(gift);
         }
 
@@ -73,7 +73,7 @@ namespace Plant_Box_Service.Controllers
             {
                 return HttpNotFound();
             }
-            ViewBag.CustomerId = new SelectList(db.Customers, "Id", "FirstName", gift.CustomerId);
+           // ViewBag.CustomerId = new SelectList(db.Customers, "Id", "FirstName", gift.CustomerId);
             return View(gift);
         }
 
@@ -90,7 +90,7 @@ namespace Plant_Box_Service.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            ViewBag.CustomerId = new SelectList(db.Customers, "Id", "FirstName", gift.CustomerId);
+            //ViewBag.CustomerId = new SelectList(db.Customers, "Id", "FirstName", gift.CustomerId);
             return View(gift);
         }
 

@@ -2,138 +2,205 @@
 @{
     ViewBag.Title = "Dashboard";
 }
-
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <h2>Preferences</h2>
-
-<div class="row" id="rcorners2">
-    <div class="col-md-6">
-        <div style="padding-top:10px">
-            <div class="form-group">
-                <span class="preference_box" style="font-size:20px">Are large plants okay?</span>
-                <div style=" float:right;">
-                    <div style=" vertical-align:middle;">
-                        @Html.EditorFor(model => model.Preference.IsLarge)
-                        @Html.ValidationMessageFor(model => model.Preference.IsLarge, "", new { @class = "text-danger" })
+@using (Html.BeginForm())
+{
+    <div class="row" id="rcorners2">
+        <div class="col-md-6">
+            <div style="padding-top:10px">
+                <div class="form-group">
+                    <span class="preference_box" style="font-size:20px">Are large plants okay?</span>
+                    <div style=" float:right;">
+                        <div style=" vertical-align:middle;">
+                            @Html.EditorFor(model => model.Preference.IsLarge)
+                            @Html.ValidationMessageFor(model => model.Preference.IsLarge, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <br />
+            <div>
+                <div class="form-group">
+                    <span class="preference_box" style="font-size:20px">Are you flexible on this size?</span>
+                    <div style=" float:right;">
+                        <div style=" vertical-align:middle;">
+                            @Html.EditorFor(model => model.Preference.FlexibleSize)
+                            @Html.ValidationMessageFor(model => model.Preference.FlexibleSize, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <br />
+            <div>
+                <div class="form-group">
+                    <span class="preference_box" style="font-size:20px">Do you enjoy cacti?</span>
+                    <div style=" float:right;">
+                        <div style=" vertical-align:middle;">
+                            @Html.EditorFor(model => model.Preference.Cacti)
+                            @Html.ValidationMessageFor(model => model.Preference.Cacti, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <br />
+            <div>
+                <div class="form-group">
+                    <span class="preference_box" style="font-size:20px">Would you like indoor food-bearing plants?</span>
+                    <div style=" float:right;">
+                        <div style=" vertical-align:middle;">
+                            @Html.EditorFor(model => model.Preference.FoodBearing)
+                            @Html.ValidationMessageFor(model => model.Preference.FoodBearing, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <br />
+            <div>
+                <div class="form-group">
+                    <span class="preference_box" style="font-size:20px">Do you enjoy Tillandsia (air) plants?</span>
+                    <div style=" float:right;">
+                        <div style=" vertical-align:middle;">
+                            @Html.EditorFor(model => model.Preference.Tillandsia)
+                            @Html.ValidationMessageFor(model => model.Preference.Tillandsia, "", new { @class = "text-danger" })
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-        <br />
-        <div>
-            <div class="form-group">
-                <span class="preference_box" style="font-size:20px">Are you flexible on this size?</span>
-                <div style=" float:right;">
-                    <div style=" vertical-align:middle;">
-                        @Html.EditorFor(model => model.Preference.FlexibleSize)
-                        @Html.ValidationMessageFor(model => model.Preference.FlexibleSize, "", new { @class = "text-danger" })
+        <div class="col-md-6" style="padding-top:10px">
+            <div>
+                <div class="form-group">
+                    <span class="preference_box" style="font-size:20px">What is your preferred optimal size?</span>
+                    <div style=" float:right;">
+                        <div style=" vertical-align:middle;">
+                            @Html.EditorFor(model => model.Preference.OptimalSize, new { htmlAttributes = new { @class = "form-control", style = "width:100px" } })
+                            @Html.ValidationMessageFor(model => model.Preference.OptimalSize, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <br />
+            <div>
+                <div class="form-group">
+                    <span class="preference_box" style="font-size:20px">Do you enjoy plants that climb?</span>
+                    <div style=" float:right;">
+                        <div style=" vertical-align:middle;">
+                            @Html.EditorFor(model => model.Preference.DrapeClimb)
+                            @Html.ValidationMessageFor(model => model.Preference.DrapeClimb, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <br />
+            <div>
+                <div class="form-group">
+                    <span class="preference_box" style="font-size:20px">Would you like hanging plants?</span>
+                    <div style=" float:right;">
+                        <div style=" vertical-align:middle;">
+                            @Html.EditorFor(model => model.Preference.Hanging)
+                            @Html.ValidationMessageFor(model => model.Preference.Hanging, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <br />
+            <div>
+                <div class="form-group">
+                    <span class="preference_box" style="font-size:20px">How do you feel about bonsai plants?</span>
+                    <div style=" float:right;">
+                        <div style=" vertical-align:middle;">
+                            @Html.EditorFor(model => model.Preference.Bonsai)
+                            @Html.ValidationMessageFor(model => model.Preference.Bonsai, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <br />
+            <div>
+                <div class="form-group">
+                    <span class="preference_box" style="font-size:20px">Would you like to receive flowers?</span>
+                    <div style=" float:right;">
+                        <div style=" vertical-align:middle;">
+                            @Html.EditorFor(model => model.Preference.Flowers)
+                            @Html.ValidationMessageFor(model => model.Preference.Flowers, "", new { @class = "text-danger" })
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-        <br />
-        <div>
-            <div class="form-group">
-                <span class="preference_box" style="font-size:20px">Do you enjoy cacti?</span>
-                <div style=" float:right;">
-                    <div style=" vertical-align:middle;">
-                        @Html.EditorFor(model => model.Preference.Cacti)
-                        @Html.ValidationMessageFor(model => model.Preference.Cacti, "", new { @class = "text-danger" })
-                    </div>
-                </div>
-            </div>
-        </div>
-        <br />
-        <div>
-            <div class="form-group">
-                <span class="preference_box" style="font-size:20px">Would you like indoor food-bearing plants?</span>
-                <div style=" float:right;">
-                    <div style=" vertical-align:middle;">
-                        @Html.EditorFor(model => model.Preference.FoodBearing)
-                        @Html.ValidationMessageFor(model => model.Preference.FoodBearing, "", new { @class = "text-danger" })
-                    </div>
-                </div>
-            </div>
-        </div>
-        <br />
-        <div>
-            <div class="form-group">
-                <span class="preference_box" style="font-size:20px">Do you enjoy Tillandsia (air) plants?</span>
-                <div style=" float:right;">
-                    <div style=" vertical-align:middle;">
-                        @Html.EditorFor(model => model.Preference.Tillandsia)
-                        @Html.ValidationMessageFor(model => model.Preference.Tillandsia, "", new { @class = "text-danger" })
-                    </div>
+        @{Model.UpdatePreferences = true;}
+        @Html.HiddenFor(c => c.UpdatePreferences)
+        @Html.HiddenFor(c => c.Customer.PreferenceId)
+        @Html.HiddenFor(c => c.Preference.PerishablesOnly)
+        @Html.HiddenFor(c => c.Preference.Id)
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="form-group" style="float:right; padding-top: 10px">
+                <div>
+                    <input type="submit" value="Update" id="Update_Preferences" class="btn btn-primary btn-larg" style="width:200px" />
                 </div>
             </div>
         </div>
     </div>
-    <div class="col-md-6" style="padding-top:10px">
-        <div>
-            <div class="form-group">
-                <span class="preference_box" style="font-size:20px">What is your preferred optimal size?</span>
-                <div style=" float:right;">
-                    <div style=" vertical-align:middle;">
-                        @Html.EditorFor(model => model.Preference.OptimalSize, new { htmlAttributes = new { @class = "form-control", style = "width:100px" } })
-                        @Html.ValidationMessageFor(model => model.Preference.OptimalSize, "", new { @class = "text-danger" })
-                    </div>
+}
+<div>
+    <div class="row">
+        <div class="col-md-12">
+            <center>
+                <h2>Personal</h2>
+            </center>
+            <div id="rcorners2" class="row">
+                <div class="col-md-3">
+                    <center>
+                        <span class="personal_info" style="vertical-align: middle">@Html.Raw(Model.Customer.FirstName + " " + Model.Customer.LastName)</span>
+                    </center>
                 </div>
-            </div>
-        </div>
-        <br />
-        <div>
-            <div class="form-group">
-                <span class="preference_box" style="font-size:20px">Do you enjoy plants that climb?</span>
-                <div style=" float:right;">
-                    <div style=" vertical-align:middle;">
-                        @Html.EditorFor(model => model.Preference.DrapeClimb)
-                        @Html.ValidationMessageFor(model => model.Preference.DrapeClimb, "", new { @class = "text-danger" })
-                    </div>
+                <div class="col-md-3">
+                    <center>
+                        <span class="personal_info">@Html.Raw(Model.Customer.Address + " " + Model.Customer.City + ", " + Model.Customer.State.Name + " " + Model.Customer.ZipCode)</span>
+                    </center>
                 </div>
-            </div>
-        </div>
-        <br />
-        <div>
-            <div class="form-group">
-                <span class="preference_box" style="font-size:20px">Would you like hanging plants?</span>
-                <div style=" float:right;">
-                    <div style=" vertical-align:middle;">
-                        @Html.EditorFor(model => model.Preference.Hanging)
-                        @Html.ValidationMessageFor(model => model.Preference.Hanging, "", new { @class = "text-danger" })
-                    </div>
+                <div class="col-md-3">
+                    <center>
+                        <span class="personal_info">Member Since: @Html.Raw(Model.Customer.MemberSince.ToString())</span>
+                    </center>
                 </div>
-            </div>
-        </div>
-        <br />
-        <div>
-            <div class="form-group">
-                <span class="preference_box" style="font-size:20px">How do you feel about bonsai plants?</span>
-                <div style=" float:right;">
-                    <div style=" vertical-align:middle;">
-                        @Html.EditorFor(model => model.Preference.Bonsai)
-                        @Html.ValidationMessageFor(model => model.Preference.Bonsai, "", new { @class = "text-danger" })
-                    </div>
-                </div>
-            </div>
-        </div>
-        <br />
-        <div>
-            <div class="form-group">
-                <span class="preference_box" style="font-size:20px">Would you like to receive flowers?</span>
-                <div style=" float:right;">
-                    <div style=" vertical-align:middle;">
-                        @Html.EditorFor(model => model.Preference.Flowers)
-                        @Html.ValidationMessageFor(model => model.Preference.Flowers, "", new { @class = "text-danger" })
-                    </div>
+                <div class="col-md-3">
+                    <center>
+                        <span class="personal_info">
+                            Account Status: @if (Model.Customer.AccountStatus == false)
+                            {<span style="color:red">Deactivated</span>}
+                            else
+                            { <span style="color:green">Active</span>}
+                            @if (Model.Customer.Donating == true) { <span style="color:orange; font-size:25px">Donating</span>}
+                        </span>
+                    </center>
                 </div>
             </div>
         </div>
     </div>
-</div>
-<div class="row">
-    <div class="col-md-12">
-        <div style="float:right; padding-top: 10px">
-            @Html.ActionLink("Update", "UpdatePreferences", "Dashboard",new {model = Model } , new { @class = "btn btn-primary btn-large", style = "width:200px" })
-        </div>
+    <div class="row">
+        <center>
+            <div>
+                <div class="col-md-4">
+                    <div style="padding-top:20px">
+                        <button type="button" class="btn btn-primary btn-large" id="Gift_Form" style="width:200px">Gift</button>
+                    </div>
+                </div>
+                <div class="col-md-4" style="padding-top:20px">
+                    <div>
+                        <button type="button" class="btn btn-warning btn-large" id="Donate_Toggle" style="width:200px">Donate</button>
+                    </div>
+                </div>
+                <div class="col-md-4" style="padding-top:20px">
+                    <div>
+                        @Html.ActionLink("Change Personal", "UpdatePersonal", "Dashboard", new { model = Model }, new { @class = "btn btn-success btn-large", style = "width:200px" })
+                    </div>
+                </div>
+            </div>
+        </center>
     </div>
 </div>
 <div class="row">
@@ -141,7 +208,7 @@
         <center>
             <h2>Shipments</h2>
         </center>
-        <div  id="rcorners2">
+        <div id="rcorners2">
             <table class="table_scroll" style="width:100%;">
                 <tr id="tr_line">
                     <th style="width:10%">
@@ -156,31 +223,31 @@
                 </tr>
                 @foreach (var item in Model.Shipments)
                 {
-                <tr id="tr_line">
-                    <td>
-                        @Html.Raw(item.TrackingHash)
-                    </td>
-                    <td>
-                        @if (item.Delivered == true)
-                        {
-                            @Html.Raw("Delivered")
-                        }
-                        else if (item.Status == true)
-                        {
-                            @Html.Raw("Shipped")
-                        }
-                    </td>
-                    <td>
-                        @if (item.Delivered == true)
-                        {
-                            @Html.Raw(item.DateDelivered.ToString("MM/dd/yyyy"))
-                        }
-                        else if (item.Status == true)
-                        {
-                            @Html.Raw(item.DateShipped.ToString("MM/dd/yyyy"))
-                        }
-                    </td>
-                </tr>
+                    <tr id="tr_line">
+                        <td>
+                            @Html.Raw(item.TrackingHash)
+                        </td>
+                        <td>
+                            @if (item.Delivered == true)
+                            {
+                                @Html.Raw("Delivered")
+                            }
+                            else if (item.Status == true)
+                            {
+                                @Html.Raw("Shipped")
+                            }
+                        </td>
+                        <td>
+                            @if (item.Delivered == true)
+                            {
+                                @Html.Raw(item.DateDelivered.ToString("MM/dd/yyyy"))
+                            }
+                            else if (item.Status == true)
+                            {
+                                @Html.Raw(item.DateShipped.ToString("MM/dd/yyyy"))
+                            }
+                        </td>
+                    </tr>
                 }
             </table>
         </div>
@@ -211,52 +278,70 @@
                 </tr>
                 @foreach (var item in Model.Payments)
                 {
-                <tr id="tr_line">
-                    <td>
-                        @Html.Raw("Confirmed")
-                    </td>
-                    <td>
-                        @Html.Raw("$" + item.AmountDue + ".00")
-                    </td>
-                    <td>
-                        @Html.Raw("$" + item.TotalPaid + ".00")
-                    </td>
-                    <td>
-                        @Html.Raw(item.Date.ToString("MM/dd/yyyy"))
-                    </td>
-                </tr>
+                    <tr id="tr_line">
+                        <td>
+                            @Html.Raw("Confirmed")
+                        </td>
+                        <td>
+                            @Html.Raw("$" + item.AmountDue + ".00")
+                        </td>
+                        <td>
+                            @Html.Raw("$" + item.TotalPaid + ".00")
+                        </td>
+                        <td>
+                            @Html.Raw(item.Date.ToString("MM/dd/yyyy"))
+                        </td>
+                    </tr>
                 }
             </table>
         </div>
     </div>
 </div>
 <br />
-<div>
-    <div class="row">
-        <div class="col-md-12">
-            <center>
-                <h2>Personal</h2>
-            </center>
+@if (Model.Customer.Gifting == true)
+{
+    <div>
+        <div class="row">
+            <div class="col-md-2">
+
+            </div>
+            <div class="col-md-8">
+                <div class="row">
+                    <div class="col-md-2">
+                        <img src="https://s3.amazonaws.com/peoplepng/wp-content/uploads/2018/07/09064956/Present-Gift-Transparent-Background-PNG.png" style="width:60px; height:62px; float:right; " />
+                    </div>
+                    <div class="col-md-8">
+                        <center>
+                            <h2>You are Gifting this Month!</h2>
+                        </center>
+                    </div>
+                    <div class="col-md-2">
+                        <img src="http://www.clipartsfree.net/vector/large/secretlondon_Gold_present_Vector_Clipart.png" style="width:60px; height:62px; float:left;" />
+                    </div>
+                </div>
+
+
+
+            </div>
+            <div class="col-md-2"></div>
+        </div>
+        <div class="row">
+
             <div id="rcorners2" class="row">
-                <div class="col-md-3">
+                <div class="col-md-4">
                     <center>
-                        <span class="personal_info" style="vertical-align: middle">@Html.Raw(Model.Customer.FirstName + " " + Model.Customer.LastName)</span>
+                        <span class="personal_info" style="vertical-align: middle">@Html.Raw(Model.Gift.FirstName + " " + Model.Gift.LastName)</span>
                     </center>
                 </div>
-                <div class="col-md-3">
+                <div class="col-md-4">
                     <center>
-                        <span class="personal_info">@Html.Raw(Model.Customer.Address + " " + Model.Customer.City + ", " + Model.Customer.State + " " + Model.Customer.ZipCode)</span>
+                        <span class="personal_info">@Html.Raw(Model.Gift.Address + " " + Model.Gift.City + ", " + Model.Gift.State.Name + " " + Model.Gift.ZipCode)</span>
                     </center>
                 </div>
-                <div class="col-md-3">
-                    <center>
-                        <span class="personal_info">Member Since: @Html.Raw(Model.Customer.MemberSince.ToString())</span>
-                    </center>
-                </div>
-                <div class="col-md-3">
+                <div class="col-md-4">
                     <center>
                         <span class="personal_info">
-                            Account Status: @if (Model.Customer.AccountStatus == false)
+                            Gifting: @if (Model.Customer.Gifting == false)
                             {<span style="color:red">Deactivated</span>}
                             else
                             { <span style="color:green">Active</span>}
@@ -264,27 +349,129 @@
                     </center>
                 </div>
             </div>
+
+        </div>
+        <div class="row">
+            <center>
+                <div>
+                    <div class="col-md-12">
+                        <div style="padding-top:20px">
+                            <button type="button" class="btn btn-primary btn-large" id="Gift_Status" style="width:200px">Update Gift Status</button>
+                        </div>
+                    </div>
+                </div>
+            </center>
         </div>
     </div>
-    <div class="row">
-        <center>
-            <div>
-                <div class="col-md-4">
-                    <div style="padding-top:20px">
-                        @Html.ActionLink("Gift", "CreateGift", "Dashboard", new { model = Model }, new { @class = "btn btn-primary btn-large", style = "width:200px" })
-                    </div>
-                </div>
-                <div class="col-md-4" style="padding-top:20px">
-                    <div>
-                        @Html.ActionLink("Donate", "Donate", "Dashboard", new { model = Model }, new { @class = "btn btn-warning btn-large", style = "width:200px" })
-                    </div>
-                </div>
-                <div class="col-md-4" style="padding-top:20px">
-                    <div>
-                        @Html.ActionLink("Change Personal", "UpdatePersonal", "Dashboard", new { model = Model }, new { @class = "btn btn-success btn-large", style = "width:200px" })
-                    </div>
-                </div>
-            </div>
-        </center>
-    </div>
-</div>
+}
+
+
+
+
+@*--------------------------------------------------------------------------------------------------------------------*@
+
+
+
+@if (Model.Customer.AccountStatus == false)
+{
+    <div class="modal fade" id="myModal" role="dialog" data-url='@Url.Action("ActivateAccount","Dashboard")'></div>
+    <script type="text/javascript">
+        $(document).ready(function () {
+
+            var url = $('#myModal').data('url');
+            $.get(url, function (data) {
+
+                $("#myModal").html(data);
+                $("#myModal").modal('show');
+            });
+        });
+    </script>}
+
+
+
+<div class="modal fade" id="myModal" role="dialog" data-url='@Url.Action("ConfrimUpdate", "Dashboard")'></div>
+<script type="text/javascript">
+
+    $(document).ready(function () {
+
+        $('#Update_Preferences').click(function () {
+
+            var url = $('#myModal').data('url');
+            $.get(url, function (data) {
+
+                $("#myModal").html(data);
+                $("#myModal").modal('show');
+            });
+        });
+    });
+
+</script>
+
+
+
+<div class="modal fade" id="myGiftModal" role="dialog" data-url='@Url.Action("GiftForm","Dashboard")'></div>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+
+        $('#Gift_Form').click(function () {
+
+            var url = $('#myGiftModal').data('url');
+            $.get(url, function (data) {
+
+                $("#myModal").html(data);
+                $("#myModal").modal('show');
+            });
+        });
+
+    });
+</script>
+
+
+
+
+
+<div class="modal fade" id="myGiftStatusModal" role="dialog" data-url='@Url.Action("GiftStatus","Dashboard")'></div>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+
+        $('#Gift_Status').click(function () {
+
+            var url = $('#myGiftStatusModal').data('url');
+            $.get(url, function (data) {
+
+                $("#myModal").html(data);
+                $("#myModal").modal('show');
+            });
+        });
+
+    });
+</script>
+
+
+
+
+<div class="modal fade" id="myDonatingModal" role="dialog" data-url='@Url.Action("DonatingStatus","Dashboard")'></div>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+
+        $('#Donate_Toggle').click(function () {
+
+            var url = $('#myDonatingModal').data('url');
+            $.get(url, function (data) {
+
+                $("#myModal").html(data);
+                $("#myModal").modal('show');
+            });
+        });
+
+    });
+</script>
+
+
+@section Scripts {
+
+    @Scripts.Render("~/bundles/jqueryval")
+}
