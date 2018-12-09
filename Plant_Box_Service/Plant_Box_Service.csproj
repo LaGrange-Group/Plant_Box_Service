@@ -203,6 +203,7 @@
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\PaymentsController.cs" />
     <Compile Include="Controllers\PreferencesController.cs" />
+    <Compile Include="Controllers\ProfileRegistrationController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -220,6 +221,7 @@
     <Compile Include="Models\Payment.cs" />
     <Compile Include="Models\Popup.cs" />
     <Compile Include="Models\Preference.cs" />
+    <Compile Include="Models\RegistrationViewModel.cs" />
     <Compile Include="Models\Shipment.cs" />
     <Compile Include="Models\State.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -359,6 +361,8 @@
     <Content Include="Views\Dashboard\DonatingStatus.cshtml" />
     <Content Include="Views\Dashboard\PersonalUpdate.cshtml" />
     <Content Include="Views\Dashboard\PersonalStatus.cshtml" />
+    <Content Include="Views\ProfileRegistration\CreatePreference.cshtml" />
+    <Content Include="Views\ProfileRegistration\CreateAccount.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
