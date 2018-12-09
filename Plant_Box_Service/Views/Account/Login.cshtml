@@ -2,58 +2,77 @@
 @model LoginViewModel
 @{
     ViewBag.Title = "Log in";
+    Layout = "~/Views/Shared/_LayoutLogin.cshtml";
 }
+<center>
+    <h2>Green Gardens</h2>
+    <h4>Monthly Plant Service for Your Home!</h4>
+</center>
 
-<h2>@ViewBag.Title.</h2>
-<div class="row">
-    <div class="col-md-8">
+<div class="row" style="height:800px">
+    <div class="col-md-12">
         <section id="loginForm">
             @using (Html.BeginForm("Login", "Account", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
             {
                 @Html.AntiForgeryToken()
-                <h4>Use a local account to log in.</h4>
-                <hr />
                 @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-                <div class="form-group">
-                    @Html.LabelFor(m => m.UserName, new { @class = "col-md-2 control-label" })
-                    <div class="col-md-10">
-                        @Html.TextBoxFor(m => m.UserName, new { @class = "form-control" })
-                        @Html.ValidationMessageFor(m => m.UserName, "", new { @class = "text-danger" })
-                    </div>
-                </div>
-                <div class="form-group">
-                    @Html.LabelFor(m => m.Password, new { @class = "col-md-2 control-label" })
-                    <div class="col-md-10">
-                        @Html.PasswordFor(m => m.Password, new { @class = "form-control" })
-                        @Html.ValidationMessageFor(m => m.Password, "", new { @class = "text-danger" })
-                    </div>
-                </div>
-                <div class="form-group">
-                    <div class="col-md-offset-2 col-md-10">
-                        <div class="checkbox">
-                            @Html.CheckBoxFor(m => m.RememberMe)
-                            @Html.LabelFor(m => m.RememberMe)
+
+                <div style=" padding-top:17%">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div style="float:right; padding-top:10px; padding-right:50px">
+                                <span class="preference_box" style="font-size:25px">User Name</span>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div>
+                                @Html.TextBoxFor(m => m.UserName, new { @class = "form-control" })
+                                @Html.ValidationMessageFor(m => m.UserName, "", new { @class = "text-danger" })
+                            </div>
                         </div>
                     </div>
-                </div>
-                <div class="form-group">
-                    <div class="col-md-offset-2 col-md-10">
-                        <input type="submit" value="Log in" class="btn btn-default" />
+                    <br />
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div style="float:right; padding-top:10px; padding-right:50px">
+                                <span class="preference_box" style="font-size:25px">Password</span>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div>
+                                @Html.PasswordFor(m => m.Password, new { @class = "form-control" })
+                                @Html.ValidationMessageFor(m => m.Password, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
                     </div>
+                    <br />
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div style="float:right; padding-top:10px; padding-right:50px">
+                                <span class="preference_box" style="font-size:15px">Remember Me</span>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div style="padding-left:75px">
+                                <label class="switch">
+                                    @Html.CheckBoxFor(model => model.RememberMe)
+                                    <div class="slider round">
+                                    </div>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                    <center>
+                        <div>
+                            <input type="submit" value="Log in" class="btn btn-primary btn-large" />
+                        </div>
+                        <br />
+                        <div>
+                            @Html.ActionLink("Register as a new user", "Register")
+                        </div>
+                    </center>
                 </div>
-                <p>
-                    @Html.ActionLink("Register as a new user", "Register")
-                </p>
-                @* Enable this once you have account confirmation enabled for password reset functionality
-            <p>
-                @Html.ActionLink("Forgot your password?", "ForgotPassword")
-            </p>*@
             }
-        </section>
-    </div>
-    <div class="col-md-4">
-        <section id="socialLoginForm">
-            @Html.Partial("_ExternalLoginsListPartial", new ExternalLoginListViewModel { ReturnUrl = ViewBag.ReturnUrl })
         </section>
     </div>
 </div>

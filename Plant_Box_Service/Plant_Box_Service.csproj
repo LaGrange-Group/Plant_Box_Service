@@ -363,6 +363,7 @@
     <Content Include="Views\Dashboard\PersonalStatus.cshtml" />
     <Content Include="Views\ProfileRegistration\CreatePreference.cshtml" />
     <Content Include="Views\ProfileRegistration\CreateAccount.cshtml" />
+    <Content Include="Views\Shared\_LayoutLogin.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
