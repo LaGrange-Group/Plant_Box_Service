@@ -9,282 +9,289 @@
 @using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
-    <div class="form-horizontal">
-        <hr />
-        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+<div class="form-horizontal">
+    <hr />
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
 
-        <div class="form-group">
-            <div class="row">
-                <div class="col-md-6">
-                    <div style="float:right; padding-top:10px">
-                        <span class="preference_box" style="font-size:20px">Are large plants okay?</span>
-                    </div>
-                </div>
-                <div class="col-md-6">
-                    <div style="float:left; padding-left:75px">
-                        <label class="switch">
-                            @Html.CheckBoxFor(model => model.Preference.IsLarge)
-                            <div class="slider round">
-                            </div>
-                        </label>
-                    </div>
+    <div class="form-group">
+        <div class="row">
+            <div class="col-md-6">
+                <div style="float:right; padding-top:10px">
+                    <span class="preference_box" style="font-size:20px">Are large plants okay?</span>
                 </div>
             </div>
-        </div>
-
-        <div class="form-group">
-            <div class="row">
-                <div class="col-md-6">
-                    <div style="float:right; padding-top:10px">
-                        <span class="preference_box" style="font-size:20px">What is your preferred optimal size?</span>
-                    </div>
-                </div>
-                <div class="col-md-6">
-                    <div style="float:left; padding-left:75px">
-                        <div style=" vertical-align:middle;">
-                            @Html.DropDownListFor(model => model.Preference.OptimalSize, new SelectList(ViewBag.Sizes), "", new { @class = "form-control" })
-                            @Html.ValidationMessageFor(model => model.Preference.OptimalSize, "", new { @class = "text-danger" })
+            <div class="col-md-6">
+                <div style="float:left; padding-left:75px">
+                    <label class="switch">
+                        @Html.CheckBoxFor(model => model.Preference.IsLarge)
+                        <div class="slider round">
                         </div>
-                    </div>
+                    </label>
                 </div>
             </div>
         </div>
+    </div>
 
-        <div class="form-group">
-            <div class="row">
-                <div class="col-md-6">
-                    <div style="float:right; padding-top:10px">
-                        <span class="preference_box" style="font-size:20px">Are you flexible on this size?</span>
-                    </div>
-                </div>
-                <div class="col-md-6">
-                    <div style="float:left; padding-left:75px">
-                        <label class="switch">
-                            @Html.CheckBoxFor(model => model.Preference.FlexibleSize)
-                            <div class="slider round">
-                            </div>
-                        </label>
-                    </div>
+    <div class="form-group">
+        <div class="row">
+            <div class="col-md-6">
+                <div style="float:right; padding-top:10px">
+                    <span class="preference_box" style="font-size:20px">What is your preferred optimal size?</span>
                 </div>
             </div>
-        </div>
-
-        <div class="form-group">
-            <div class="row">
-                <div class="col-md-6">
-                    <div style="float:right; padding-top:10px">
-                        <span class="preference_box" style="font-size:20px">Do you enjoy plants that climb?</span>
-                    </div>
-                </div>
-                <div class="col-md-6">
-                    <div style="float:left; padding-left:75px">
-                        <label class="switch">
-                            @Html.CheckBoxFor(model => model.Preference.DrapeClimb)
-                            <div class="slider round">
-                            </div>
-                        </label>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="form-group">
-            <div class="row">
-                <div class="col-md-6">
-                    <div style="float:right; padding-top:10px">
-                        <span class="preference_box" style="font-size:20px">Do you enjoy cacti?</span>
-                    </div>
-                </div>
-                <div class="col-md-6">
-                    <div style="float:left; padding-left:75px">
-                        <label class="switch">
-                            @Html.CheckBoxFor(model => model.Preference.Cacti)
-                            <div class="slider round">
-                            </div>
-                        </label>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="form-group">
-            <div class="row">
-                <div class="col-md-6">
-                    <div style="float:right; padding-top:10px">
-                        <span class="preference_box" style="font-size:20px">Would you like hanging plants?</span>
-                    </div>
-                </div>
-                <div class="col-md-6">
-                    <div style="float:left; padding-left:75px">
-                        <label class="switch">
-                            @Html.CheckBoxFor(model => model.Preference.Hanging)
-                            <div class="slider round">
-                            </div>
-                        </label>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="form-group">
-            <div class="row">
-                <div class="col-md-6">
-                    <div style="float:right; padding-top:10px">
-                        <span class="preference_box" style="font-size:20px">Would you like indoor food-bearing plants?</span>
-                    </div>
-                </div>
-                <div class="col-md-6">
-                    <div style="float:left; padding-left:75px">
-                        <label class="switch">
-                            @Html.CheckBoxFor(model => model.Preference.FoodBearing)
-                            <div class="slider round">
-                            </div>
-                        </label>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="form-group">
-            <div class="row">
-                <div class="col-md-6">
-                    <div style="float:right; padding-top:10px">
-                        <span class="preference_box" style="font-size:20px">How do you feel about bonsai plants?</span>
-                    </div>
-                </div>
-                <div class="col-md-6">
-                    <div style="float:left; padding-left:75px">
-                        <label class="switch">
-                            @Html.CheckBoxFor(model => model.Preference.Bonsai)
-                            <div class="slider round">
-                            </div>
-                        </label>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="form-group">
-            <div class="row">
-                <div class="col-md-6">
-                    <div style="float:right; padding-top:10px">
-                        <span class="preference_box" style="font-size:20px">Would you like to receive flowers?</span>
-                    </div>
-                </div>
-                <div class="col-md-6">
-                    <div style="float:left; padding-left:75px">
-                        <label class="switch">
-                            @Html.CheckBoxFor(model => model.Preference.Flowers)
-                            <div class="slider round">
-                            </div>
-                        </label>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <br />
-        <br />
-        <br />
-        <center>
-            <h2>Account</h2>
-        </center>
-        <hr />
-        <div class="form-group">
-            <div class="row">
-                <div class="col-md-5">
-                    <div style="float:right; padding-top:10px">
-                        <span class="preference_box" style="font-size:20px;">First name:</span>
-                    </div>
-                </div>
-                <div class="col-md-7">
-                    <div style="float:left">
-                        @Html.EditorFor(model => model.Customer.FirstName, new { htmlAttributes = new { @class = "form-control" } })
-                        @Html.ValidationMessageFor(model => model.Customer.FirstName, "", new { @class = "text-danger" })
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="form-group">
-            <div class="row">
-                <div class="col-md-5">
-                    <div style="float:right; padding-top:10px">
-                        <span class="preference_box" style="font-size:20px;">Last name:</span>
-                    </div>
-                </div>
-                <div class="col-md-7">
-                    <div style="float:left">
-                        @Html.EditorFor(model => model.Customer.LastName, new { htmlAttributes = new { @class = "form-control" } })
-                        @Html.ValidationMessageFor(model => model.Customer.LastName, "", new { @class = "text-danger" })
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="form-group">
-            <div class="row">
-                <div class="col-md-5">
-                    <div style="float:right; padding-top:10px">
-                        <span class="preference_box" style="font-size:20px;">Address:</span>
-                    </div>
-                </div>
-                <div class="col-md-7">
-                    <div style="float:left">
-                        @Html.EditorFor(model => model.Customer.Address, new { htmlAttributes = new { @class = "form-control" } })
-                        @Html.ValidationMessageFor(model => model.Customer.Address, "", new { @class = "text-danger" })
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="form-group">
-            <div class="row">
-                <div class="col-md-5">
-                    <div style="float:right; padding-top:10px">
-                        <span class="preference_box" style="font-size:20px;">City:</span>
-                    </div>
-                </div>
-                <div class="col-md-7">
-                    <div style="float:left">
-                        @Html.EditorFor(model => model.Customer.City, new { htmlAttributes = new { @class = "form-control" } })
-                        @Html.ValidationMessageFor(model => model.Customer.City, "", new { @class = "text-danger" })
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="form-group">
-            <div class="row">
-                <div class="col-md-5">
-                    <div style="float:right; padding-top:10px">
-                        <span class="preference_box" style="font-size:20px;">State:</span>
-                    </div>
-                </div>
-                <div class="col-md-7">
-                    <div style="float:left">
-                        @Html.DropDownListFor(model => model.Customer.StateId, new SelectList(Model.States, "Id", "Name"), "", new { @class = "form-control" })
-                        @Html.ValidationMessageFor(model => model.Customer.StateId, "", new { @class = "text-danger" })
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="form-group">
-            <div class="row">
-                <div class="col-md-5">
-                    <div style="float:right; padding-top:10px">
-                        <span class="preference_box" style="font-size:20px;">ZipCode:</span>
-                    </div>
-                </div>
-                <div class="col-md-7">
-                    <div style="float:left">
-                        @Html.EditorFor(model => model.Customer.ZipCode, new { htmlAttributes = new { @class = "form-control" } })
-                        @Html.ValidationMessageFor(model => model.Customer.ZipCode, "", new { @class = "text-danger" })
+            <div class="col-md-6">
+                <div style="float:left; padding-left:75px">
+                    <div style=" vertical-align:middle;">
+                        @Html.DropDownListFor(model => model.Preference.OptimalSize, new SelectList(ViewBag.Sizes), "", new { @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model.Preference.OptimalSize, "", new { @class = "text-danger" })
                     </div>
                 </div>
             </div>
         </div>
     </div>
+
+    <div class="form-group">
+        <div class="row">
+            <div class="col-md-6">
+                <div style="float:right; padding-top:10px">
+                    <span class="preference_box" style="font-size:20px">Are you flexible on this size?</span>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div style="float:left; padding-left:75px">
+                    <label class="switch">
+                        @Html.CheckBoxFor(model => model.Preference.FlexibleSize)
+                        <div class="slider round">
+                        </div>
+                    </label>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <div class="row">
+            <div class="col-md-6">
+                <div style="float:right; padding-top:10px">
+                    <span class="preference_box" style="font-size:20px">Do you enjoy plants that climb?</span>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div style="float:left; padding-left:75px">
+                    <label class="switch">
+                        @Html.CheckBoxFor(model => model.Preference.DrapeClimb)
+                        <div class="slider round">
+                        </div>
+                    </label>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <div class="row">
+            <div class="col-md-6">
+                <div style="float:right; padding-top:10px">
+                    <span class="preference_box" style="font-size:20px">Do you enjoy cacti?</span>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div style="float:left; padding-left:75px">
+                    <label class="switch">
+                        @Html.CheckBoxFor(model => model.Preference.Cacti)
+                        <div class="slider round">
+                        </div>
+                    </label>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <div class="row">
+            <div class="col-md-6">
+                <div style="float:right; padding-top:10px">
+                    <span class="preference_box" style="font-size:20px">Would you like hanging plants?</span>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div style="float:left; padding-left:75px">
+                    <label class="switch">
+                        @Html.CheckBoxFor(model => model.Preference.Hanging)
+                        <div class="slider round">
+                        </div>
+                    </label>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <div class="row">
+            <div class="col-md-6">
+                <div style="float:right; padding-top:10px">
+                    <span class="preference_box" style="font-size:20px">Would you like indoor food-bearing plants?</span>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div style="float:left; padding-left:75px">
+                    <label class="switch">
+                        @Html.CheckBoxFor(model => model.Preference.FoodBearing)
+                        <div class="slider round">
+                        </div>
+                    </label>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <div class="row">
+            <div class="col-md-6">
+                <div style="float:right; padding-top:10px">
+                    <span class="preference_box" style="font-size:20px">How do you feel about bonsai plants?</span>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div style="float:left; padding-left:75px">
+                    <label class="switch">
+                        @Html.CheckBoxFor(model => model.Preference.Bonsai)
+                        <div class="slider round">
+                        </div>
+                    </label>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <div class="row">
+            <div class="col-md-6">
+                <div style="float:right; padding-top:10px">
+                    <span class="preference_box" style="font-size:20px">Would you like to receive flowers?</span>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div style="float:left; padding-left:75px">
+                    <label class="switch">
+                        @Html.CheckBoxFor(model => model.Preference.Flowers)
+                        <div class="slider round">
+                        </div>
+                    </label>
+                </div>
+            </div>
+        </div>
+    </div>
+    <br />
+    <br />
+    <br />
+    <center>
+        <h2>Account</h2>
+    </center>
+    <hr />
+    @if (!ViewBag.IsValid)
+    {
+    <center>
+        <h4 style="color:red">You have entered an invalid address. Please try again.</h4>
+    </center>
+
+    }
+    <div class="form-group">
+        <div class="row">
+            <div class="col-md-5">
+                <div style="float:right; padding-top:10px">
+                    <span class="preference_box" style="font-size:20px;">First name:</span>
+                </div>
+            </div>
+            <div class="col-md-7">
+                <div style="float:left">
+                    @Html.EditorFor(model => model.Customer.FirstName, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Customer.FirstName, "", new { @class = "text-danger" })
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <div class="row">
+            <div class="col-md-5">
+                <div style="float:right; padding-top:10px">
+                    <span class="preference_box" style="font-size:20px;">Last name:</span>
+                </div>
+            </div>
+            <div class="col-md-7">
+                <div style="float:left">
+                    @Html.EditorFor(model => model.Customer.LastName, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Customer.LastName, "", new { @class = "text-danger" })
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <div class="row">
+            <div class="col-md-5">
+                <div style="float:right; padding-top:10px">
+                    <span class="preference_box" style="font-size:20px;">Address:</span>
+                </div>
+            </div>
+            <div class="col-md-7">
+                <div style="float:left">
+                    @Html.EditorFor(model => model.Customer.Address, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Customer.Address, "", new { @class = "text-danger" })
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <div class="row">
+            <div class="col-md-5">
+                <div style="float:right; padding-top:10px">
+                    <span class="preference_box" style="font-size:20px;">City:</span>
+                </div>
+            </div>
+            <div class="col-md-7">
+                <div style="float:left">
+                    @Html.EditorFor(model => model.Customer.City, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Customer.City, "", new { @class = "text-danger" })
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <div class="row">
+            <div class="col-md-5">
+                <div style="float:right; padding-top:10px">
+                    <span class="preference_box" style="font-size:20px;">State:</span>
+                </div>
+            </div>
+            <div class="col-md-7">
+                <div style="float:left">
+                    @Html.DropDownListFor(model => model.Customer.StateId, new SelectList(Model.States, "Id", "Name"), "", new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.Customer.StateId, "", new { @class = "text-danger" })
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <div class="row">
+            <div class="col-md-5">
+                <div style="float:right; padding-top:10px">
+                    <span class="preference_box" style="font-size:20px;">ZipCode:</span>
+                </div>
+            </div>
+            <div class="col-md-7">
+                <div style="float:left">
+                    @Html.EditorFor(model => model.Customer.ZipCode, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Customer.ZipCode, "", new { @class = "text-danger" })
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
     <br />
     @Html.HiddenFor(model => model.Preference.Id)
     <div class="row">

@@ -7030,6 +7030,22 @@ legend {
         padding: 200px;
     }
 
+.content_center {
+    width: 200px;
+    height: 600px;
+    background-color: blue;
+    position: absolute; /*it can be fixed too*/
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    margin: auto;
+    /*this to solve "the content will not be cut when the window is smaller than the content": */
+    max-width: 100%;
+    max-height: 100%;
+    overflow: auto;
+}
+
     #Gift_Form{
 
     }
@@ -7044,4 +7060,7 @@ legend {
 #Customer_Update {
 }
 #Customer_Status {
+}
+
+#View_Form {
 }

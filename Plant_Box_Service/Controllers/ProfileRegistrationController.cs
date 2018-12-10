@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNet.Identity;
+using Plant_Box_Service.Class;
 using Plant_Box_Service.Models;
 using System;
 using System.Collections.Generic;
@@ -6,6 +7,7 @@ using System.Data.Entity;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using Trash_Collector.Class;
 
 namespace Plant_Box_Service.Controllers
 {
@@ -35,13 +37,15 @@ namespace Plant_Box_Service.Controllers
         {
             db.Entry(registrationViewModel.Preference).State = EntityState.Modified;
             db.SaveChanges();
-            return RedirectToAction("CreateAccount", registrationViewModel.Preference.Id);
+            return RedirectToAction("CreateAccount");
         }
 
-        public ActionResult CreateAccount(int id = 1)
+        public ActionResult CreateAccount(bool ValidAddress = true)
         {
+            ViewBag.IsValid = ValidAddress;
             RegistrationViewModel registrationViewModel = new RegistrationViewModel();
-            registrationViewModel.Preference = db.Preferences.Where(p => p.Id == id).Single();
+            int maxPreference = db.Preferences.Max(p => p.Id);
+            registrationViewModel.Preference = db.Preferences.Where(p => p.Id == maxPreference).Single();
             registrationViewModel.States = db.States.ToList();
             ViewBag.Sizes = new List<string>() { "Small", "Medium", "Large" };
             return View(registrationViewModel);
@@ -51,14 +55,24 @@ namespace Plant_Box_Service.Controllers
         public ActionResult CreateAccount(RegistrationViewModel registrationViewModel)
         {
             var userId = GetId();
-            registrationViewModel.Customer.UserId = userId;
-            registrationViewModel.Customer.MemberSince = DateTime.Now;
-            registrationViewModel.Customer.Donating = false;
-            registrationViewModel.Customer.AccountStatus = false;
-            registrationViewModel.Customer.PreferenceId = registrationViewModel.Preference.Id;
-            db.Customers.Add(registrationViewModel.Customer);
-            db.SaveChanges();
-            return RedirectToAction("Main", "Dashboard");
+            if (Geocode.CheckValidAddress(registrationViewModel.Customer))
+            {
+                if (Geocode.isValidLocation)
+                {
+                    registrationViewModel.Customer.UserId = userId;
+                    registrationViewModel.Customer.MemberSince = DateTime.Now;
+                    registrationViewModel.Customer.Donating = false;
+                    registrationViewModel.Customer.AccountStatus = false;
+                    registrationViewModel.Customer.PreferenceId = registrationViewModel.Preference.Id;
+                    db.Customers.Add(registrationViewModel.Customer);
+                    db.SaveChanges();
+                    Customer customerForEmail = db.Customers.Include(c => c.State).Where(c => c.UserId == userId).Single();
+                    SendEmail.Main(customerForEmail);
+                    return RedirectToAction("Main", "Dashboard");
+                }
+            }
+            return RedirectToAction("CreateAccount", new { ValidAddress = false });
+
         }
 
         private string GetId()

@@ -13,6 +13,9 @@ namespace Plant_Box_Service.Controllers
             if (User.IsInRole("Customer"))
             {
                 return RedirectToAction("Index", "Dashboard");
+            }else if (User.IsInRole("Admin"))
+            {
+                return RedirectToAction("ToDoShipments", "Admin");
             }
             return RedirectToAction("Login", "Account");
         }

@@ -172,8 +172,8 @@ namespace Plant_Box_Service.Migrations
                         TrackingHash = c.String(),
                         Status = c.Boolean(nullable: false),
                         Delivered = c.Boolean(nullable: false),
-                        DateShipped = c.DateTime(nullable: false),
-                        DateDelivered = c.DateTime(nullable: false),
+                        DateShipped = c.DateTime(),
+                        DateDelivered = c.DateTime(),
                         CustomerId = c.Int(nullable: false),
                     })
                 .PrimaryKey(t => t.Id)

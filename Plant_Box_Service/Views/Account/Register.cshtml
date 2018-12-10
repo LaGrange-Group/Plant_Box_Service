@@ -11,35 +11,71 @@
     <h4>Create a new account.</h4>
     <hr />
     @Html.ValidationSummary("", new { @class = "text-danger" })
+
     <div class="form-group">
-        @Html.LabelFor(m => m.Email, new { @class = "col-md-2 control-label" })
-        <div class="col-md-10">
-            @Html.TextBoxFor(m => m.Email, new { @class = "form-control" })
+        <div class="row">
+            <div class="col-md-5">
+                <div style="float:right; padding-top:10px">
+                    <span class="preference_box" style="font-size:20px;">Email:</span>
+                </div>
+            </div>
+            <div class="col-md-7">
+                <div style="float:left">
+                    @Html.TextBoxFor(m => m.Email, new { @class = "form-control" })
+                </div>
+            </div>
         </div>
     </div>
+
     <div class="form-group">
-        @Html.LabelFor(m => m.UserName, new { @class = "col-md-2 control-label" })
-        <div class="col-md-10">
-            @Html.TextBoxFor(m => m.UserName, new { @class = "form-control" })
+        <div class="row">
+            <div class="col-md-5">
+                <div style="float:right; padding-top:10px">
+                    <span class="preference_box" style="font-size:20px;">User Name:</span>
+                </div>
+            </div>
+            <div class="col-md-7">
+                <div style="float:left">
+                    @Html.TextBoxFor(m => m.UserName, new { @class = "form-control" })
+                </div>
+            </div>
         </div>
     </div>
+
     <div class="form-group">
-        @Html.LabelFor(m => m.Password, new { @class = "col-md-2 control-label" })
-        <div class="col-md-10">
-            @Html.PasswordFor(m => m.Password, new { @class = "form-control" })
+        <div class="row">
+            <div class="col-md-5">
+                <div style="float:right; padding-top:10px">
+                    <span class="preference_box" style="font-size:20px;">Password:</span>
+                </div>
+            </div>
+            <div class="col-md-7">
+                <div style="float:left">
+                    @Html.PasswordFor(m => m.Password, new { @class = "form-control" })
+                </div>
+            </div>
         </div>
     </div>
+
     <div class="form-group">
-        @Html.LabelFor(m => m.ConfirmPassword, new { @class = "col-md-2 control-label" })
-        <div class="col-md-10">
-            @Html.PasswordFor(m => m.ConfirmPassword, new { @class = "form-control" })
+        <div class="row">
+            <div class="col-md-5">
+                <div style="float:right; padding-top:10px">
+                    <span class="preference_box" style="font-size:20px;">Confirm Password:</span>
+                </div>
+            </div>
+            <div class="col-md-7">
+                <div style="float:left">
+                    @Html.PasswordFor(m => m.ConfirmPassword, new { @class = "form-control" })
+                </div>
+            </div>
         </div>
     </div>
-    <div class="form-group">
-        <div class="col-md-offset-2 col-md-10">
-            <input type="submit" class="btn btn-default" value="Register" />
+    <center>
+        <div style="padding-left:12%">
+            <input type="submit" class="btn btn-primary" value="Register" />
         </div>
-    </div>
+    </center>
 }
 
 @section Scripts {

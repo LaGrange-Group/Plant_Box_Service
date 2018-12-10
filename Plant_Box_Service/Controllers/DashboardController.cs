@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNet.Identity;
+using Plant_Box_Service.Class;
 using Plant_Box_Service.Models;
 using System;
 using System.Collections.Generic;
@@ -48,7 +49,10 @@ namespace Plant_Box_Service.Controllers
 
                 }
                 ViewBag.Sizes = new List<string>() { "Small", "Medium", "Large" };
+                ViewBag.Simulate = false;
+
                 return View(dashboardViewModel);
+                
             }
             catch
             {
@@ -228,6 +232,40 @@ namespace Plant_Box_Service.Controllers
             customer.AccountStatus = false;
             db.Entry(customer).State = EntityState.Modified;
             db.SaveChanges();
+            return RedirectToAction("Main");
+        }
+
+        public ActionResult SimulatePay()
+        {
+            var userId = GetId();
+            Customer customerForEmail = db.Customers.Include(c => c.State).Where(c => c.UserId == userId).Single();
+            int customerId = db.Customers.Where(c => c.UserId == userId).Select(c => c.Id).Single();
+            Payment payment = new Payment();
+            payment.AmountDue = 30;
+            payment.TotalPaid = db.Payments.Where(c => c.CustomerId == customerId).OrderByDescending(p => p.Id).Select(p => p.TotalPaid).FirstOrDefault() + 30;
+            payment.CustomerId = customerId;
+            payment.Date = DateTime.Now;
+            db.Payments.Add(payment);
+            db.SaveChanges();
+            // Call email to notify customer of payment
+            Shipment shipmentToUpdate = db.Shipments.Where(s => s.CustomerId == customerId).OrderByDescending(p => p.Id).FirstOrDefault();
+            if (shipmentToUpdate != null)
+            {
+                shipmentToUpdate.Delivered = true;
+                shipmentToUpdate.DateDelivered = DateTime.Now;
+                db.Entry(shipmentToUpdate).State = EntityState.Modified;
+                db.SaveChanges();
+            }
+            Shipment shipment = new Shipment()
+            {
+                Status = false,
+                Delivered = false,
+                CustomerId = customerId
+            };
+            db.Shipments.Add(shipment);
+            db.SaveChanges();
+            // Call email to notify admin of new pending shipment
+            SendEmail.Main(customerForEmail);
             return RedirectToAction("Main");
         }
         private string GetId()

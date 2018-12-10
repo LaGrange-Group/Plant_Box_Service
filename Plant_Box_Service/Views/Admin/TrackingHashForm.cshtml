@@ -1,0 +1,122 @@
+﻿@model Plant_Box_Service.Models.AdminViewModel
+@{
+    ViewBag.Title = "Index";
+}
+<div class="row">
+    <div class="col-md-12" style="padding-top:3%">
+        <div class="row">
+            <div class="col-md-3" style="border:1px solid black">
+                <center>
+                    <h3>Admin Center</h3>
+                </center>
+            </div>
+            <div class="col-md-3">
+                <div class="row">
+                    <div class="col-md-9">
+                        <div class="text-center" style="padding-top:10px; float:right">
+                            <h4>Todays Shipments:</h4>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="text-center" style="padding-top:10px; float:left">
+                            <h4>@Html.Raw(Model.Customers.Where(c => c.AccountStatus == true).Count())</h4>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="row">
+                    <div class="col-md-8">
+                        <div class="text-center" style="padding-top:10px; float:right">
+                            <h4>Total Customers:</h4>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="text-center" style="padding-top:10px; float:left">
+                            <h4>@Html.Raw(Model.Customers.Where(c => c.AccountStatus == true).Count())</h4>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="row">
+                    <div class="col-md-8">
+                        <div class="text-center" style="padding-top:10px; float:right">
+                            <h4>Monthly Income:</h4>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="text-center" style="padding-top:10px; float:left">
+                            <h4>$@Html.Raw(Model.Customers.Where(c => c.AccountStatus == true).Count() * 30).00</h4>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-3" style="border:1px solid black; height:800px">
+        <center>
+            <div style="padding-top:10%">
+                @Html.ActionLink("To Do Shipments", "ToDoShipments", "Admin", new { @class = "btn btn-primary btn-large", style = "width:200px" })
+            </div>
+            <br />
+            <br />
+            <div>
+                @Html.ActionLink("Add Tracking Hash", "UpdateTrackingHash", "Admin", new { @class = "btn btn-success btn-large", style = "width:200px" })
+            </div>
+        </center>
+    </div>
+    <div class="col-md-9" style="border:1px solid black; height:800px">
+        @using (Html.BeginForm())
+        {
+            @Html.AntiForgeryToken()
+            <center>
+                <div>
+                    <h3>Update Shipping Details</h3>
+                    <hr />
+                </div>
+            </center>
+            <div class="row">
+                <div class="col-md-5">
+                    <div style="float:right; padding-top:10px">
+                        <h4>Customer:</h4>
+                    </div>
+                </div>
+                <div class="col-md-7" style="padding-top:10px">
+                    <div style="float:left">
+                        <h4>@Html.Raw(Model.Customer.FirstName + " " + Model.Customer.LastName)</h4>
+                    </div>
+                </div>
+            </div>
+            <br />
+            <br />
+            <div class="form-group">
+                <div class="row">
+                    <div class="col-md-5">
+                        <div style="float:right; padding-top:10px">
+                            <span class="preference_box" style="font-size:20px;">Tracking Hash:</span>
+                        </div>
+                    </div>
+                    <div class="col-md-7">
+                        <div style="float:left">
+                            @Html.TextBoxFor(m => m.Shipment.TrackingHash, new { @class = "form-control" })
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <br />
+            @Html.HiddenFor(model => model.Customer.Id)
+            @Html.HiddenFor(model => model.Shipment.Id)
+            @Html.HiddenFor(model => model.Shipment.Status)
+            @Html.HiddenFor(model => model.Shipment.Delivered)
+            @Html.HiddenFor(model => model.Shipment.CustomerId)
+            <center>
+                <div>
+                    <input type="submit" value="Mark as Shipped" class="btn btn-warning" style="width:150px" />
+                </div>
+            </center>
+        }
+    </div>
+</div>

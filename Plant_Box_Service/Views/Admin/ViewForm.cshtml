@@ -1,0 +1,382 @@
+﻿@model Plant_Box_Service.Models.AdminViewModel
+@{
+    ViewBag.Title = "Index";
+}
+<div class="row">
+    <div class="col-md-12" style="padding-top:3%">
+        <div class="row">
+            <div class="col-md-3" style="border:1px solid black">
+                <center>
+                    <h3>Admin Center</h3>
+                </center>
+            </div>
+            <div class="col-md-3">
+                <div class="row">
+                    <div class="col-md-9">
+                        <div class="text-center" style="padding-top:10px; float:right">
+                            <h4>Todays Shipments:</h4>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="text-center" style="padding-top:10px; float:left">
+                            <h4>@Html.Raw(Model.Shipments.Count())</h4>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="row">
+                    <div class="col-md-8">
+                        <div class="text-center" style="padding-top:10px; float:right">
+                            <h4>Total Customers:</h4>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="text-center" style="padding-top:10px; float:left">
+                            <h4>@Html.Raw(Model.Customers.Where(c => c.AccountStatus == true).Count())</h4>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="row">
+                    <div class="col-md-8">
+                        <div class="text-center" style="padding-top:10px; float:right">
+                            <h4>Monthly Income:</h4>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="text-center" style="padding-top:10px; float:left">
+                            <h4>$@Html.Raw(Model.Customers.Where(c => c.AccountStatus == true).Count() * 30).00</h4>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-3" style="border:1px solid black; height:800px">
+        <center>
+            <div style="padding-top:10%">
+                @Html.ActionLink("To Do Shipments", "ToDoShipments", "Admin", new { @class = "btn btn-primary btn-large", style = "width:200px" })
+            </div>
+            <br />
+            <br />
+            <div>
+                @Html.ActionLink("Add Tracking Hash", "UpdateTrackingHash", "Admin", new { @class = "btn btn-success btn-large", style = "width:200px" })
+            </div>
+        </center>
+    </div>
+    <div class="col-md-9" style="border:1px solid black; height:800px">
+        <center class="content_center" style="width:90%; height:90%">
+            <div style="border:1px solid black; width:100%; height:100%; background-color:cornsilk">
+                <div class="row">
+                    <div class="col-md-5">
+                        <div style="float:right; padding-top:10px">
+                            <span class="preference_box" style="font-size:22px;">Recipient</span>
+                        </div>
+                    </div>
+                    <div class="col-md-7" style="padding-top:10px">
+                        <div style="float:left">
+                            <span class="preference_box" style="font-size:22px;">Information</span>
+                        </div>
+                    </div>
+                </div>
+                @if (Model.Customer.Gifting == true)
+                {
+                    <div class="row">
+                        <div class="col-md-5">
+                            <div style="float:right; padding-top:10px">
+                                <span class="preference_box" style="font-size:18px;">Name:</span>
+                            </div>
+                        </div>
+                        <div class="col-md-7" style="padding-top:10px">
+                            <div style="float:left">
+                                @Html.Raw(Model.Customer.Gift.FirstName + " " + Model.Customer.Gift.LastName)
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-5">
+                            <div style="float:right; padding-top:10px">
+                                <span class="preference_box" style="font-size:18px;">Address:</span>
+                            </div>
+                        </div>
+                        <div class="col-md-7" style="padding-top:10px">
+                            <div style="float:left">
+                                @Html.Raw(Model.Customer.Gift.Address)
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-5">
+                            <div style="float:right; padding-top:10px">
+                                <span class="preference_box" style="font-size:18px;">City:</span>
+                            </div>
+                        </div>
+                        <div class="col-md-7" style="padding-top:10px">
+                            <div style="float:left">
+                                @Html.Raw(Model.Customer.Gift.City)
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-5">
+                            <div style="float:right; padding-top:10px">
+                                <span class="preference_box" style="font-size:18px;">State:</span>
+                            </div>
+                        </div>
+                        <div class="col-md-7" style="padding-top:10px">
+                            <div style="float:left">
+                                @Html.Raw(Model.Customer.Gift.State.Name)
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-5">
+                            <div style="float:right; padding-top:10px">
+                                <span class="preference_box" style="font-size:18px;">Zip Code:</span>
+                            </div>
+                        </div>
+                        <div class="col-md-7" style="padding-top:10px">
+                            <div style="float:left">
+                                @Html.Raw(Model.Customer.Gift.ZipCode.ToString())
+                            </div>
+                        </div>
+                    </div>
+                    <br />
+                }
+                else
+                {
+                    <div class="row">
+                        <div class="col-md-5">
+                            <div style="float:right; padding-top:10px">
+                                <span class="preference_box" style="font-size:18px;">Name:</span>
+                            </div>
+                        </div>
+                        <div class="col-md-7" style="padding-top:10px">
+                            <div style="float:left">
+                                @Html.Raw(Model.Customer.FirstName + " " + Model.Customer.LastName)
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-5">
+                            <div style="float:right; padding-top:10px">
+                                <span class="preference_box" style="font-size:18px;">Address:</span>
+                            </div>
+                        </div>
+                        <div class="col-md-7" style="padding-top:10px">
+                            <div style="float:left">
+                                @Html.Raw(Model.Customer.Address)
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-5">
+                            <div style="float:right; padding-top:10px">
+                                <span class="preference_box" style="font-size:18px;">City:</span>
+                            </div>
+                        </div>
+                        <div class="col-md-7" style="padding-top:10px">
+                            <div style="float:left">
+                                @Html.Raw(Model.Customer.City)
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-5">
+                            <div style="float:right; padding-top:10px">
+                                <span class="preference_box" style="font-size:18px;">State:</span>
+                            </div>
+                        </div>
+                        <div class="col-md-7" style="padding-top:10px">
+                            <div style="float:left">
+                                @Html.Raw(Model.Customer.State.Name)
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-5">
+                            <div style="float:right; padding-top:10px">
+                                <span class="preference_box" style="font-size:18px;">Zip Code:</span>
+                            </div>
+                        </div>
+                        <div class="col-md-7" style="padding-top:10px">
+                            <div style="float:left">
+                                @Html.Raw(Model.Customer.ZipCode.ToString())
+                            </div>
+                        </div>
+                    </div>
+                    <br />
+                }
+
+
+                <div class="row">
+                    <div class="col-md-5">
+                        <div style="float:right; padding-top:10px">
+                            <span class="preference_box" style="font-size:22px;">Customer</span>
+                        </div>
+                    </div>
+                    <div class="col-md-7" style="padding-top:10px">
+                        <div style="float:left">
+                            <span class="preference_box" style="font-size:22px;">Accepts</span>
+                        </div>
+                    </div>
+                </div>
+
+                @if (Model.Preference.IsLarge == true)
+                {
+                    <div class="row">
+                        <div class="col-md-5">
+                            <div style="float:right; padding-top:10px">
+                                <span class="preference_box" style="font-size:18px;">Large Plants:</span>
+                            </div>
+                        </div>
+                        <div class="col-md-7" style="padding-top:10px">
+                            <div style="float:left">
+                                <img src="http://www.pngmart.com/files/3/Green-Tick-PNG-Pic.png" style="width:30px; height:25px" />
+                            </div>
+                        </div>
+                    </div>
+                }
+                @if (Model.Preference.OptimalSize != null)
+                {
+                    <div class="row">
+                        <div class="col-md-5">
+                            <div style="float:right; padding-top:10px">
+                                <span class="preference_box" style="font-size:18px;">Optimal Size:</span>
+                            </div>
+                        </div>
+                        <div class="col-md-7" style="padding-top:10px">
+                            <div style="float:left">
+                                @Html.Raw(Model.Preference.OptimalSize)
+                            </div>
+                        </div>
+                    </div>
+                }
+                @if (Model.Preference.FlexibleSize == true)
+                {
+                    <div class="row">
+                        <div class="col-md-5">
+                            <div style="float:right; padding-top:10px">
+                                <span class="preference_box" style="font-size:18px;">Flexible on Optimal Size:</span>
+                            </div>
+                        </div>
+                        <div class="col-md-7" style="padding-top:10px">
+                            <div style="float:left">
+                                <img src="http://www.pngmart.com/files/3/Green-Tick-PNG-Pic.png" style="width:30px; height:25px" />
+                            </div>
+                        </div>
+                    </div>
+                }
+                @if (Model.Preference.DrapeClimb == true)
+                {
+                    <div class="row">
+                        <div class="col-md-5">
+                            <div style="float:right; padding-top:10px">
+                                <span class="preference_box" style="font-size:18px;">Draping or Climbing Plants:</span>
+                            </div>
+                        </div>
+                        <div class="col-md-7" style="padding-top:10px">
+                            <div style="float:left">
+                                <img src="http://www.pngmart.com/files/3/Green-Tick-PNG-Pic.png" style="width:30px; height:25px" />
+                            </div>
+                        </div>
+                    </div>
+                }
+                @if (Model.Preference.Cacti == true)
+                {
+                    <div class="row">
+                        <div class="col-md-5">
+                            <div style="float:right; padding-top:10px">
+                                <span class="preference_box" style="font-size:18px;">Cacti:</span>
+                            </div>
+                        </div>
+                        <div class="col-md-7" style="padding-top:10px">
+                            <div style="float:left">
+                                <img src="http://www.pngmart.com/files/3/Green-Tick-PNG-Pic.png" style="width:30px; height:25px" />
+                            </div>
+                        </div>
+                    </div>
+                }
+                @if (Model.Preference.Hanging == true)
+                {
+                    <div class="row">
+                        <div class="col-md-5">
+                            <div style="float:right; padding-top:10px">
+                                <span class="preference_box" style="font-size:18px;">Hanging Plants:</span>
+                            </div>
+                        </div>
+                        <div class="col-md-7" style="padding-top:10px">
+                            <div style="float:left">
+                                <img src="http://www.pngmart.com/files/3/Green-Tick-PNG-Pic.png" style="width:30px; height:25px" />
+                            </div>
+                        </div>
+                    </div>
+                }
+                @if (Model.Preference.FoodBearing == true)
+                {
+                    <div class="row">
+                        <div class="col-md-5">
+                            <div style="float:right; padding-top:10px">
+                                <span class="preference_box" style="font-size:18px;">Food-Bearing Plants:</span>
+                            </div>
+                        </div>
+                        <div class="col-md-7" style="padding-top:10px">
+                            <div style="float:left">
+                                <img src="http://www.pngmart.com/files/3/Green-Tick-PNG-Pic.png" style="width:30px; height:25px" />
+                            </div>
+                        </div>
+                    </div>
+                }
+                @if (Model.Preference.Bonsai == true)
+                {
+                    <div class="row">
+                        <div class="col-md-5">
+                            <div style="float:right; padding-top:10px">
+                                <span class="preference_box" style="font-size:18px;">Bonsai Plants:</span>
+                            </div>
+                        </div>
+                        <div class="col-md-7" style="padding-top:10px">
+                            <div style="float:left">
+                                <img src="http://www.pngmart.com/files/3/Green-Tick-PNG-Pic.png" style="width:30px; height:25px" />
+                            </div>
+                        </div>
+                    </div>
+                }
+                @if (Model.Preference.Tillandsia == true)
+                {
+                    <div class="row">
+                        <div class="col-md-5">
+                            <div style="float:right; padding-top:10px">
+                                <span class="preference_box" style="font-size:18px;">Tillandsia (air) Plants:</span>
+                            </div>
+                        </div>
+                        <div class="col-md-7" style="padding-top:10px">
+                            <div style="float:left">
+                                <img src="http://www.pngmart.com/files/3/Green-Tick-PNG-Pic.png" style="width:30px; height:25px" />
+                            </div>
+                        </div>
+                    </div>
+                }
+                @if (Model.Preference.Flowers == true)
+                {
+                    <div class="row">
+                        <div class="col-md-5">
+                            <div style="float:right; padding-top:10px">
+                                <span class="preference_box" style="font-size:18px;">Flowers:</span>
+                            </div>
+                        </div>
+                        <div class="col-md-7" style="padding-top:10px">
+                            <div style="float:left">
+                                <img src="http://www.pngmart.com/files/3/Green-Tick-PNG-Pic.png" style="width:30px; height:25px" />
+                            </div>
+                        </div>
+                    </div>
+                }
+            </div>
+        </center>
+    </div>
+</div>

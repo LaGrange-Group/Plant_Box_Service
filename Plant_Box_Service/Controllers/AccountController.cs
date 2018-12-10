@@ -163,7 +163,7 @@ namespace Plant_Box_Service.Controllers
                     // string code = await UserManager.GenerateEmailConfirmationTokenAsync(user.Id);
                     // var callbackUrl = Url.Action("ConfirmEmail", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);
                     // await UserManager.SendEmailAsync(user.Id, "Confirm your account", "Please confirm your account by clicking <a href=\"" + callbackUrl + "\">here</a>");
-                    await this.UserManager.AddToRoleAsync(user.Id, db.Roles.Select(r => r.Name).FirstOrDefault());
+                    await this.UserManager.AddToRoleAsync(user.Id, db.Roles.Where(r => r.Name == "Customer").Select(r => r.Name).Single());
                     return RedirectToAction("CreatePreference", "ProfileRegistration");
                 }
                 AddErrors(result);

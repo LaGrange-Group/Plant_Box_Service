@@ -296,31 +296,35 @@
                 </tr>
                 @foreach (var item in Model.Shipments)
                 {
-                    <tr id="tr_line">
-                        <td>
-                            @Html.Raw(item.TrackingHash)
-                        </td>
-                        <td>
-                            @if (item.Delivered == true)
-                            {
-                                @Html.Raw("Delivered")
-                            }
-                            else if (item.Status == true)
-                            {
-                                @Html.Raw("Shipped")
-                            }
-                        </td>
-                        <td>
-                            @if (item.Delivered == true)
-                            {
-                                @Html.Raw(item.DateDelivered.ToString("MM/dd/yyyy"))
-                            }
-                            else if (item.Status == true)
-                            {
-                                @Html.Raw(item.DateShipped.ToString("MM/dd/yyyy"))
-                            }
-                        </td>
-                    </tr>
+                    if (item.Status == true)
+                    {
+                        <tr id="tr_line">
+                            <td>
+                                <a href=@Html.Raw("https://www.ups.com/track?loc=en_US&tracknum=" + item.TrackingHash + "&requester=WT/") target="_blank">@Html.Raw(item.TrackingHash)</a>
+                            </td>
+                            <td>
+                                @if (item.Delivered == true)
+                                {
+                                    @Html.Raw("Delivered")
+                                }
+                                else if (item.Status == true)
+                                {
+                                    @Html.Raw("Shipped")
+                                }
+                            </td>
+                            <td>
+                                @if (item.Delivered == true)
+                                {
+                                    @Html.Raw(item.DateDelivered.ToString())
+                                }
+                                else if (item.Status == true)
+                                {
+                                    @Html.Raw(item.DateShipped.ToString())
+                                }
+                            </td>
+                        </tr>
+                    }
+
                 }
             </table>
         </div>
@@ -449,6 +453,18 @@
         </div>
     </div>
 }
+<br />
+@if (ViewBag.Simulate == true)
+{
+    <div class="row">
+        <div class="col-md-12">
+            <center>
+                @Html.ActionLink("Simulate Auto Pay", "SimulatePay", "Dashboard", new { @class = "btn btn-success btn-large", style = "width:200px" })
+            </center>
+        </div>
+    </div>
+}
+
 
 
 

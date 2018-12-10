@@ -1,0 +1,32 @@
+﻿<div class="container" style="padding-top:200px; width:40%">
+    <div class="row">
+        <div class="col-sm-4"></div>
+        <div class="modal-content">
+            <div class="modal-header">
+                <center>
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h3 class="modal-title" id="myFormViewModal-label">Update Gift Status</h3>
+                </center>
+                <div>
+                    @using (Html.BeginForm())
+                    {
+                        @Html.AntiForgeryToken()
+
+                        <div class="row">
+                            <div class="col-md-6" style="padding:40px">
+                                <center>
+                                    <button type="button" class="btn btn-primary btn-large" id="Gift_Update" style="width:200px; padding:20px">Update Gift Details</button>
+                                </center>
+                            </div>
+                            <div class="col-md-6" style="padding:40px">
+                                <center>
+
+                                </center>
+                            </div>
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
